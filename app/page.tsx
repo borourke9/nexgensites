@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import Features from "@/components/features"
@@ -5,6 +6,20 @@ import HowItWorks from "@/components/how-it-works"
 import Testimonials from "@/components/testimonials"
 import CTA from "@/components/cta"
 import Footer from "@/components/footer"
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Transform your online presence with NexGenSites. We offer AI-powered websites, chatbots, and SEO services to help your business grow.",
+  openGraph: {
+    title: "NexGenSites - AI-Powered Websites & SEO",
+    description: "Transform your online presence with NexGenSites. We offer AI-powered websites, chatbots, and SEO services to help your business grow.",
+    url: "https://nexgensites.vercel.app",
+  },
+  twitter: {
+    title: "NexGenSites - AI-Powered Websites & SEO",
+    description: "Transform your online presence with NexGenSites. We offer AI-powered websites, chatbots, and SEO services to help your business grow.",
+  },
+}
 
 export default function Home() {
   return (

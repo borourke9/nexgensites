@@ -1,7 +1,22 @@
+import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Bot, Search, Shield, ChevronDown } from "lucide-react"
 import Navbar from "@/components/navbar"
+
+export const metadata: Metadata = {
+  title: "Solutions",
+  description: "Explore our comprehensive solutions for AI-powered websites, chatbots, and SEO services. Transform your online presence with NexGenSites.",
+  openGraph: {
+    title: "Solutions | NexGenSites",
+    description: "Explore our comprehensive solutions for AI-powered websites, chatbots, and SEO services. Transform your online presence with NexGenSites.",
+    url: "https://nexgensites.vercel.app/solutions",
+  },
+  twitter: {
+    title: "Solutions | NexGenSites",
+    description: "Explore our comprehensive solutions for AI-powered websites, chatbots, and SEO services. Transform your online presence with NexGenSites.",
+  },
+}
 
 export default function SolutionsPage() {
   return (
