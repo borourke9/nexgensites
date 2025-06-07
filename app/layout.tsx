@@ -4,6 +4,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import MouseMoveEffect from "@/components/mouse-move-effect"
 import { ThemeProvider } from "@/components/theme-provider"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -70,9 +71,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "NexGenSites",
   },
-  verification: {
-    google: "VgedMaHX_D-hYwSt_GD7ZRDlnIlGzhAJFNg3J3MJfvk",
-  },
 }
 
 export default function RootLayout({
@@ -82,6 +80,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="google-site-verification" content="VgedMaHX_D-hYwSt_GD7ZRDlnIlGzhAJFNg3J3MJfvk" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
