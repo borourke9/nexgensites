@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MessageSquare, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import {
   Dialog,
   DialogContent,
@@ -21,8 +21,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <MessageSquare className="h-5 w-5 text-primary" />
-          <span className="font-bold">NexGenSites</span>
+          <img src="/logo.png" alt="NexGenSites Logo" className="h-8 w-auto" />
         </Link>
 
         {/* Mobile Menu Button */}

@@ -82,6 +82,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="VgedMaHX_D-hYwSt_GD7ZRDlnIlGzhAJFNg3J3MJfvk" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
