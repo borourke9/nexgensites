@@ -70,7 +70,7 @@ export default function Navigation() {
           fixed top-0 left-0 right-0 z-50 transition-all duration-300
           ${
             isScrolled
-              ? "bg-white/80 backdrop-blur-md border-b border-white/20 shadow-lg shadow-pink-500/5"
+              ? "bg-white/90 backdrop-blur-md border-b border-white/20 shadow-lg shadow-pink-500/10"
               : "bg-transparent"
           }
         `}
@@ -78,8 +78,10 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <div className="flex items-center">
-              <span className="text-2xl font-bold text-gray-900">NexGen</span>
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-2">
+                <span className="text-2xl font-bold text-gray-900">NEXGEN</span>
+              </div>
             </div>
 
             {/* Desktop Navigation */}
@@ -89,7 +91,7 @@ export default function Navigation() {
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
                   className={`
-                    px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative
                     ${
                       activeSection === item.href.replace("#", "")
                         ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg shadow-pink-500/25"
@@ -98,6 +100,9 @@ export default function Navigation() {
                   `}
                 >
                   {item.name}
+                  {activeSection === item.href.replace("#", "") && (
+                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
+                  )}
                 </button>
               ))}
             </div>
@@ -106,7 +111,7 @@ export default function Navigation() {
             <div className="hidden lg:flex items-center space-x-4">
               <button
                 onClick={() => scrollToSection("#contact-section")}
-                className="bg-gradient-to-r from-pink-500 to-orange-400 text-white font-semibold px-6 py-3 rounded-full hover:from-pink-600 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-pink-500/25"
+                className="bg-gradient-to-r from-pink-500 to-orange-400 text-white font-semibold px-6 py-3 rounded-full hover:from-pink-600 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30"
               >
                 Get Started
               </button>
