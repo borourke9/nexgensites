@@ -239,7 +239,7 @@ export default function Page() {
               {/* Additional trust elements */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">$2.3M+</div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">$200k+</div>
                   <div className="text-sm text-gray-600">Revenue Generated</div>
                 </div>
                 <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl">
