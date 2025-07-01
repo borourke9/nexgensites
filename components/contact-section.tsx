@@ -4,14 +4,10 @@ import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Mail, Phone, MessageCircle } from "lucide-react"
+import StrategySessionForm from "./strategy-session-form"
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -30,19 +26,6 @@ export default function ContactSection() {
 
     return () => observer.disconnect()
   }, [])
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-  }
 
   return (
     <section className="min-h-screen bg-[#f8f8f8] py-20 px-6 relative overflow-hidden">
@@ -104,65 +87,7 @@ export default function ContactSection() {
               ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}
             `}
           >
-            <div className="bg-white/80 backdrop-blur-md border border-white/40 rounded-3xl p-8 shadow-2xl shadow-pink-500/10">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get Your Free Strategy Session</h3>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300"
-                    placeholder="Enter your email address"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Tell us about your business
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={4}
-                    className="w-full px-4 py-3 bg-white/60 backdrop-blur-sm border border-white/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300 resize-none"
-                    placeholder="What challenges are you facing? What are your growth goals?"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-pink-500 to-orange-400 text-white font-semibold py-4 px-6 rounded-xl hover:from-pink-600 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-pink-500/25"
-                >
-                  Get My Free Strategy Session
-                </button>
-              </form>
-            </div>
+            <StrategySessionForm />
           </div>
 
           {/* Right side - Contact info and benefits */}
@@ -192,7 +117,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Email us</div>
-                  <div className="text-gray-600">hello@nexgen.agency</div>
+                  <div className="text-gray-600">bryce@nexgensites.com</div>
                 </div>
               </div>
 
