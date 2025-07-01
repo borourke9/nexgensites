@@ -182,7 +182,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Call us directly</div>
-                  <div className="text-gray-600">(555) 123-4567</div>
+                  <div className="text-gray-600">(248) 404-5768</div>
                 </div>
               </div>
 
