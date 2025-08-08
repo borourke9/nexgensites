@@ -140,7 +140,7 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* Right side - Real Business Mockup */}
+              {/* Right side - Northern Viking Woodworks Device Mockup */}
               <div 
                 className={`relative transition-all duration-1000 ease-out ${
                   isLoaded 
@@ -150,40 +150,60 @@ export default function Page() {
                 style={{ transitionDelay: '600ms' }}
               >
                 <div className="relative">
-                  {/* Main business mockup */}
-                  <div className="relative bg-white/90 backdrop-blur-sm border border-stone-200 rounded-2xl p-8 shadow-lg">
-                    <div className="aspect-[4/3] bg-gradient-to-br from-stone-100 to-rose-50 rounded-xl overflow-hidden">
-                      {/* Spa/Wellness Business Mockup */}
-                      <div className="h-full bg-gradient-to-br from-rose-50 to-amber-50 p-6 flex flex-col justify-between">
-                        <div className="text-center space-y-3">
-                          <div className="w-12 h-12 bg-rose-200 rounded-full flex items-center justify-center mx-auto">
-                            <SparklesIcon className="w-6 h-6 text-rose-600" />
-                          </div>
-                          <div className="space-y-1">
-                            <h3 className="text-lg font-medium text-stone-900">Serenity Spa & Wellness</h3>
-                            <p className="text-sm text-stone-600">Premium spa services & treatments</p>
-                          </div>
-                        </div>
-                        
-                        {/* Mock website elements */}
-                        <div className="space-y-2">
-                          <div className="h-2 bg-rose-200 rounded-full"></div>
-                          <div className="h-2 bg-rose-100 rounded-full w-3/4"></div>
-                          <div className="h-2 bg-rose-50 rounded-full w-1/2"></div>
+                  {/* Laptop Mockup */}
+                  <div
+                    className={`relative transform rotate-3 transition-all duration-1000 ease-out ${
+                      isLoaded
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-8'
+                    }`}
+                    style={{ transitionDelay: '800ms' }}
+                  >
+                    {/* Laptop Frame */}
+                    <div className="relative bg-stone-800 rounded-2xl p-3 shadow-2xl">
+                      {/* Screen Bezel */}
+                      <div className="bg-stone-900 rounded-xl p-2">
+                        {/* Screen */}
+                        <div className="aspect-[16/10] bg-white rounded-lg overflow-hidden shadow-inner">
+                          <img
+                            src="/nvw_compressed.jpg"
+                            alt="Northern Viking Woodworks Website"
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
                         </div>
                       </div>
-                    </div>
-                    
-                    {/* Overlay elements for visual interest */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center border border-rose-200">
-                      <Palette className="w-6 h-6 text-rose-600" />
-                    </div>
-                    <div className="absolute -bottom-4 -left-4 w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center border border-stone-200">
-                      <Heart className="w-5 h-5 text-stone-600" />
+                      {/* Laptop Base */}
+                      <div className="mt-2 h-2 bg-stone-700 rounded-b-lg"></div>
                     </div>
                   </div>
-
-                  {/* Floating testimonial card with fade-up animation */}
+                  
+                  {/* Smartphone Mockup */}
+                  <div
+                    className={`absolute -top-8 -right-8 transform -rotate-12 transition-all duration-1000 ease-out ${
+                      isLoaded
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-4'
+                    }`}
+                    style={{ transitionDelay: '1000ms' }}
+                  >
+                    {/* Phone Frame */}
+                    <div className="relative bg-stone-800 rounded-3xl p-2 shadow-xl">
+                      {/* Screen */}
+                      <div className="aspect-[9/16] bg-white rounded-2xl overflow-hidden shadow-inner">
+                        <img
+                          src="/nvw_compressed.jpg"
+                          alt="Northern Viking Woodworks Mobile Website"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      {/* Home Indicator */}
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-stone-600 rounded-full"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Floating testimonial card */}
                   <div 
                     className={`absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl p-4 shadow-lg max-w-xs transition-all duration-1000 ease-out ${
                       isLoaded 
@@ -193,12 +213,12 @@ export default function Page() {
                     style={{ transitionDelay: '1200ms' }}
                   >
                     <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
-                        <span className="text-sm font-medium text-rose-700">S</span>
+                      <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                        <span className="text-sm font-medium text-amber-700">N</span>
                       </div>
                       <div>
-                        <p className="text-sm text-stone-700 font-medium">"They transformed our online presence completely."</p>
-                        <p className="text-xs text-stone-500 mt-1">Sarah, Serenity Spa</p>
+                        <p className="text-sm text-stone-700 font-medium">"Our custom woodwork business now has a professional online presence."</p>
+                        <p className="text-xs text-stone-500 mt-1">Northern Viking Woodworks</p>
                       </div>
                     </div>
                   </div>
