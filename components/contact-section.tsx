@@ -1,10 +1,9 @@
 "use client"
 
-import type React from "react"
-
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { ArrowRight, Mail, Phone, MessageCircle } from "lucide-react"
 import StrategySessionForm from "./strategy-session-form"
+import SectionHeading from "./section-heading"
 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -33,46 +32,25 @@ export default function ContactSection() {
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
       <div ref={sectionRef} className="max-w-7xl mx-auto relative z-10">
-        {/* Main CTA */}
-        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-          <h2
-            className={`
-              text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-wide mb-6 sm:mb-8 leading-tight
-              transition-all duration-1000 ease-out transform
-              ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-            `}
-          >
-            Ready to{" "}
-            <span className="font-medium text-rose-800">
-              transform
-            </span>{" "}
-            your business?
-          </h2>
+        {/* Enhanced Section Header */}
+        <SectionHeading 
+          title="Ready to"
+          accentText="transform your business?"
+          subtitle="Join hundreds of businesses that have scaled with our proven growth systems. Get your free strategy session today."
+        />
 
-          <p
-            className={`
-              text-lg md:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed mb-12
-              transition-all duration-1000 ease-out transform delay-300
-              ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-            `}
-          >
-            Join hundreds of businesses that have scaled with our proven growth systems. Get your free strategy session
-            today.
-          </p>
-
-          {/* Large CTA Button */}
-          <div
-            className={`
-              mb-20 transition-all duration-1000 ease-out transform delay-500
-              ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-            `}
-          >
-            <button className="border border-stone-300 text-stone-700 font-medium text-lg px-12 py-6 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group">
-              Build My System
-              <ArrowRight className="w-6 h-6 ml-3 inline group-hover:translate-x-1 transition-transform" />
-              <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-2"></div>
-            </button>
-          </div>
+        {/* Large CTA Button */}
+        <div
+          className={`
+            mb-20 transition-all duration-1000 ease-out transform delay-500
+            ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+          `}
+        >
+          <button className="border border-stone-300 text-stone-700 font-medium text-lg px-12 py-6 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group">
+            Build My System
+            <ArrowRight className="w-6 h-6 ml-3 inline group-hover:translate-x-1 transition-transform" />
+            <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-2"></div>
+          </button>
         </div>
 
         {/* Two-column layout */}

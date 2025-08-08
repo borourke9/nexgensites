@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Star, Heart } from "lucide-react"
+import SectionHeading from "./section-heading"
 
 interface Testimonial {
   name: string
@@ -124,50 +125,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
   )
 }
 
-function AnimatedTitle() {
-  const [isVisible, setIsVisible] = useState(false)
-  const titleRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.3 },
-    )
-
-    if (titleRef.current) {
-      observer.observe(titleRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div ref={titleRef} className="text-center mb-20">
-      <h2
-        className={`
-          text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6
-          transition-all duration-1000 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-        `}
-      >
-        what our clients say
-      </h2>
-      <p
-        className={`
-          text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal
-          transition-all duration-1000 ease-out transform delay-300
-          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-        `}
-      >
-        Real results from real businesses. See how our growth systems have transformed companies across industries.
-      </p>
-    </div>
-  )
-}
 
 export default function TestimonialsSection() {
   return (
@@ -176,8 +134,12 @@ export default function TestimonialsSection() {
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
-        {/* Animated Section Header */}
-        <AnimatedTitle />
+        {/* Enhanced Section Header */}
+        <SectionHeading 
+          title="What our clients"
+          accentText="say"
+          subtitle="Real results from real businesses. See how our growth systems have transformed companies across industries."
+        />
 
         {/* Desktop Grid Layout */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12">

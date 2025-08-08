@@ -3,6 +3,7 @@
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight, ExternalLink, ArrowUpRight } from "lucide-react"
+import SectionHeading from "./section-heading"
 
 interface Project {
   name: string
@@ -229,14 +230,11 @@ export default function ClientStories({ projects }: ClientStoriesProps) {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-light tracking-wide text-stone-900 mb-6">
-              Client Stories
-            </h2>
-            <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal">
-              Selected work with real results.
-            </p>
-          </div>
+          <SectionHeading 
+            title="Client"
+            accentText="Stories"
+            subtitle="Selected work with real results."
+          />
 
           <div className="min-h-[680px] lg:min-h-[520px] flex items-center justify-center">
             <EmptyState />
@@ -257,14 +255,11 @@ export default function ClientStories({ projects }: ClientStoriesProps) {
 
       <div className="max-w-[1200px] mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-light tracking-wide text-stone-900 mb-6">
-            Client Stories
-          </h2>
-          <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal">
-            Selected work with real results.
-          </p>
-        </div>
+        <SectionHeading 
+          title="Client"
+          accentText="Stories"
+          subtitle="Selected work with real results."
+        />
 
         {/* Carousel Container */}
         <div className="relative">

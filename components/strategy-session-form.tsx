@@ -216,10 +216,10 @@ export default function StrategySessionForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 ${
+          className={`w-full font-semibold py-4 px-6 rounded-none border transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 ${
             submitStatus === "success"
-              ? "bg-gradient-to-r from-green-500 to-emerald-400 text-white shadow-green-500/25"
-              : "bg-gradient-to-r from-pink-500 to-orange-400 text-white hover:from-pink-600 hover:to-orange-500 shadow-pink-500/25"
+              ? "bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600 shadow-emerald-500/25"
+              : "bg-stone-900 hover:bg-stone-800 text-white border-stone-900 hover:border-stone-800 shadow-stone-900/25 hover:shadow-xl"
           }`}
         >
           {isSubmitting ? (
