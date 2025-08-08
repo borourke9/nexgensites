@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Bot, Search, Shield, ChevronDown } from "lucide-react"
-import Navbar from "@/components/navbar"
+import Navigation from "@/components/navigation"
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -28,7 +28,7 @@ export default function SolutionsPage() {
       </div>
 
       <div className="relative z-10">
-        <Navbar />
+        <Navigation />
         
         {/* Hero Section */}
         <section className="container flex min-h-[calc(100vh-3.5rem)] max-w-screen-2xl flex-col items-center justify-center space-y-8 py-24 text-center md:py-32">

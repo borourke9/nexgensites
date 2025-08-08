@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Check, ArrowRight, Phone, Mail } from "lucide-react"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
+import Navigation from "@/components/navigation"
 
 const pricingSteps = [
   {
@@ -63,7 +62,7 @@ export default function PricingPage() {
       </div>
 
       <div className="relative z-10">
-        <Navbar />
+        <Navigation />
         
         {/* Hero Section */}
         <section className="container flex min-h-[calc(100vh-3.5rem)] max-w-screen-2xl flex-col items-center justify-center space-y-8 py-24 text-center md:py-32">
@@ -159,7 +158,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <Footer />
+
       </div>
     </div>
   )
