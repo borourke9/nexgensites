@@ -5,108 +5,152 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 5.7% 82.9%;
   }
+}
 
+@layer base {
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Boutique Gradient Background System */
+@layer utilities {
+  /* Primary Boutique Gradient - matches hero section */
+  .bg-boutique-gradient {
+    background: linear-gradient(135deg, 
+      #fef7f0 0%, 
+      #fef3e8 25%, 
+      #fdf2e7 50%, 
+      #fef7f0 75%, 
+      #fef3e8 100%);
   }
 
-  /* Typography Reset and Defaults */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-sans font-bold tracking-tight;
-    line-height: 1.2;
+  /* Animated Boutique Gradient */
+  .bg-boutique-gradient-animated {
+    background: linear-gradient(135deg, 
+      #fef7f0 0%, 
+      #fef3e8 25%, 
+      #fdf2e7 50%, 
+      #fef7f0 75%, 
+      #fef3e8 100%);
+    background-size: 400% 400%;
+    animation: boutiqueShift 45s ease-in-out infinite;
   }
 
-  h1 {
-    @apply text-4xl md:text-6xl font-bold;
+  /* Alternate Boutique Gradient - champagne to ivory */
+  .bg-boutique-gradient-alt {
+    background: linear-gradient(135deg, 
+      #fef7f0 0%, 
+      #fdf8f3 25%, 
+      #fef9f4 50%, 
+      #fef7f0 75%, 
+      #fdf8f3 100%);
   }
 
-  h2 {
-    @apply text-3xl md:text-4xl font-bold;
+  /* Radial Boutique Gradient */
+  .bg-boutique-gradient-radial {
+    background: radial-gradient(ellipse at top center, 
+      #fef7f0 0%, 
+      #fef3e8 50%, 
+      #fdf2e7 100%);
   }
 
-  h3 {
-    @apply text-2xl md:text-3xl font-bold;
+  /* Subtle Overlay for Content Sections */
+  .bg-boutique-overlay {
+    background: linear-gradient(135deg, 
+      rgba(254, 247, 240, 0.95) 0%, 
+      rgba(254, 243, 232, 0.95) 25%, 
+      rgba(253, 242, 231, 0.95) 50%, 
+      rgba(254, 247, 240, 0.95) 75%, 
+      rgba(254, 243, 232, 0.95) 100%);
   }
 
-  h4 {
-    @apply text-xl md:text-2xl font-bold;
+  /* Boutique Gradient Animation */
+  @keyframes boutiqueShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
   }
 
-  h5 {
-    @apply text-lg md:text-xl font-bold;
+  /* Boutique Section Backgrounds */
+  .bg-boutique-section {
+    @apply bg-boutique-gradient relative overflow-hidden;
   }
 
-  h6 {
-    @apply text-base md:text-lg font-bold;
+  .bg-boutique-section-animated {
+    @apply bg-boutique-gradient-animated relative overflow-hidden;
   }
 
-  p {
-    @apply font-sans font-normal tracking-normal;
-    line-height: 1.6;
+  .bg-boutique-section-alt {
+    @apply bg-boutique-gradient-alt relative overflow-hidden;
   }
 
-  button {
-    @apply font-sans font-normal tracking-wide;
+  /* Content Overlay for Better Contrast */
+  .bg-boutique-content-overlay {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(1px);
   }
 
-  a {
-    @apply font-sans font-normal tracking-normal;
+  /* Boutique Card Backgrounds */
+  .bg-boutique-card {
+    @apply bg-white/70 backdrop-blur-sm border border-stone-200/50;
   }
 
-  /* Navigation specific */
-  nav,
-  nav * {
-    @apply font-sans font-normal tracking-wide;
+  .bg-boutique-card-hover {
+    @apply bg-white/80 backdrop-blur-sm border border-stone-200/50;
   }
 }

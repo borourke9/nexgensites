@@ -90,60 +90,52 @@ function PricingCard({ tier, index }: { tier: PricingTier; index: number }) {
       className={`
         relative group
         transition-all duration-700 ease-out transform
-        ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"}
-        hover:scale-105
+        ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+        hover:scale-[1.02]
         ${tier.popular ? "lg:-mt-8" : ""}
       `}
     >
       {/* Popular badge */}
       {tier.popular && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="bg-gradient-to-r from-pink-500 to-orange-400 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg flex items-center space-x-1">
+          <div className="bg-rose-50 text-rose-700 text-sm font-medium px-4 py-2 rounded-full border border-rose-200 flex items-center space-x-1">
             <Star className="w-4 h-4 fill-current" />
             <span>Most Popular</span>
           </div>
         </div>
       )}
 
-      {/* Glow effect */}
-      <div
-        className={`
-          absolute inset-0 -z-10 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500
-          ${tier.popular ? "bg-gradient-to-br from-pink-400 via-orange-300 to-yellow-200" : "bg-gradient-to-br from-gray-300 via-gray-200 to-gray-100"}
-        `}
-      />
-
       {/* Card */}
       <div
         className={`
-          relative bg-white/80 backdrop-blur-md border rounded-3xl p-8 shadow-xl transition-all duration-300 h-full
+          relative bg-white/70 backdrop-blur-sm border rounded-xl p-8 shadow-sm transition-all duration-300 h-full
           ${
             tier.popular
-              ? "border-pink-200 shadow-pink-500/20 hover:shadow-pink-500/30"
-              : "border-white/40 shadow-gray-500/10 hover:shadow-gray-500/20"
+              ? "border-rose-200 shadow-md hover:shadow-lg"
+              : "border-stone-200/50 shadow-sm hover:shadow-md"
           }
-          hover:bg-white/90 hover:border-white/60
+          hover:bg-white/80 hover:border-stone-300/50
         `}
       >
         {/* Header */}
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">{tier.name}</h3>
+          <h3 className="text-2xl font-medium text-stone-900 mb-2">{tier.name}</h3>
           <div className="flex items-baseline justify-center mb-2">
-            <span className="text-4xl font-bold text-gray-900">{tier.price}</span>
-            {tier.period && <span className="text-gray-500 ml-1">{tier.period}</span>}
+            <span className="text-4xl font-light text-stone-900">{tier.price}</span>
+            {tier.period && <span className="text-stone-500 ml-1">{tier.period}</span>}
           </div>
-          <p className="text-sm text-gray-500 mb-4">{tier.setupFee}</p>
-          <p className="text-gray-600 text-sm">{tier.description}</p>
+          <p className="text-sm text-stone-500 mb-4">{tier.setupFee}</p>
+          <p className="text-stone-600 text-sm">{tier.description}</p>
         </div>
 
         {/* Features */}
         <div className="space-y-4 mb-8">
           {tier.features.map((feature, featureIndex) => (
             <div key={featureIndex} className="flex items-start space-x-3">
-              <div className="flex-shrink-0 w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
-                <Check className="w-3 h-3 text-green-600" />
+              <div className="flex-shrink-0 w-5 h-5 bg-rose-50 rounded-full flex items-center justify-center mt-0.5">
+                <Check className="w-3 h-3 text-rose-600" />
               </div>
-              <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+              <span className="text-stone-700 text-sm leading-relaxed">{feature}</span>
             </div>
           ))}
         </div>
@@ -151,15 +143,16 @@ function PricingCard({ tier, index }: { tier: PricingTier; index: number }) {
         {/* CTA Button */}
         <button
           className={`
-            w-full py-4 px-6 rounded-full font-semibold transition-all duration-300 transform hover:scale-105
+            w-full py-3 px-6 rounded-none font-medium transition-all duration-300 group
             ${
               tier.popular
-                ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-xl shadow-pink-500/25 hover:from-pink-600 hover:to-orange-500"
-                : "bg-gray-900 text-white hover:bg-gray-800 shadow-xl shadow-gray-500/25"
+                ? "border border-rose-300 text-rose-700 hover:bg-rose-50"
+                : "border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white hover:border-stone-900"
             }
           `}
         >
           {tier.cta}
+          <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
         </button>
       </div>
     </div>
@@ -188,20 +181,19 @@ function AnimatedTitle() {
   }, [])
 
   return (
-    <div ref={titleRef} className="text-center mb-16">
+    <div ref={titleRef} className="text-center mb-20">
       <h2
         className={`
-          text-4xl md:text-6xl font-semibold tracking-tight mb-6 
-          bg-gradient-to-r from-gray-900 via-pink-600 to-orange-500 bg-clip-text text-transparent
+          text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6
           transition-all duration-1000 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95"}
+          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
       >
-        Tailored Solutions, Transparent Value
+        tailored solutions, transparent value
       </h2>
       <p
         className={`
-          text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-normal
+          text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal
           transition-all duration-1000 ease-out transform delay-300
           ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
@@ -214,11 +206,11 @@ function AnimatedTitle() {
 
 export default function PricingSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-50/30 via-transparent to-orange-50/30" />
+    <section className="py-24 bg-boutique-section-alt relative overflow-hidden">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
       
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         <AnimatedTitle />
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -228,21 +220,21 @@ export default function PricingSection() {
         </div>
 
         {/* Additional info */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-4">
+        <div className="mt-20 text-center">
+          <p className="text-stone-600 mb-8">
             All plans include a 30-day money-back guarantee and dedicated support.
           </p>
-          <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
+          <div className="flex items-center justify-center space-x-8 text-sm text-stone-500">
             <div className="flex items-center space-x-2">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-rose-600" />
               <span>No long-term contracts</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-rose-600" />
               <span>Cancel anytime</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Check className="w-4 h-4 text-green-500" />
+              <Check className="w-4 h-4 text-rose-600" />
               <span>24/7 support</span>
             </div>
           </div>

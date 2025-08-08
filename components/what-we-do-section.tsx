@@ -1,225 +1,327 @@
 "use client"
 
 import type React from "react"
-
 import { useEffect, useRef, useState } from "react"
-import { Globe, Bot, Target, Search, BarChart3, Mic } from "lucide-react"
+import { ChevronLeft, ChevronRight, ExternalLink, ArrowUpRight } from "lucide-react"
 
-interface ServiceCard {
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  description: string
-  comingSoon?: boolean
+interface Project {
+  name: string
+  industry: string
+  tag: string
+  result: string
+  quote: string
+  quoteBy: string
+  liveUrl: string
+  caseUrl?: string
+  images: {
+    desktop: string
+    mobile: string
+  }
 }
 
-const services: ServiceCard[] = [
+const SAMPLE_PROJECTS: Project[] = [
   {
-    icon: Globe,
-    title: "Website Design",
-    description:
-      "High-converting websites that turn visitors into customers with modern design and seamless user experience.",
+    name: "Happy Trails RV Rentals",
+    industry: "RV & Boat Rental",
+    tag: "Website + SEO",
+    result: "+65% rental bookings in 90 days",
+    quote: "Our new website brings in more customers than ever before.",
+    quoteBy: "Mike, Owner",
+    liveUrl: "https://happy-trails-rv-rental.com/",
+    images: {
+      desktop: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1200",
+      mobile: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=600"
+    }
   },
   {
-    icon: Bot,
-    title: "AI Chatbot",
-    description: "24/7 intelligent customer support that qualifies leads and answers questions automatically.",
+    name: "Northside Electric",
+    industry: "Home Services",
+    tag: "Website + Ads + AI Receptionist",
+    result: "3.1x lead volume in 90 days",
+    quote: "The AI picks up every call—we stopped missing jobs.",
+    quoteBy: "Mike, Owner",
+    liveUrl: "https://example.com",
+    images: {
+      desktop: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1200",
+      mobile: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=600"
+    }
   },
   {
-    icon: Target,
-    title: "Paid Ads",
-    description: "Strategic ad campaigns across Google, Facebook, and LinkedIn that maximize your ROI and reach.",
-  },
-  {
-    icon: Search,
-    title: "SEO",
-    description: "Dominate search results with our proven SEO strategies that drive organic traffic and leads.",
-  },
-  {
-    icon: BarChart3,
-    title: "Lead Tracking",
-    description: "Advanced analytics and CRM integration to track, nurture, and convert every lead effectively.",
-  },
-  {
-    icon: Mic,
-    title: "Voice Agent",
-    description: "AI-powered phone agents that handle calls, book appointments, and qualify prospects.",
-    comingSoon: true,
-  },
+    name: "Harbor View Med Spa",
+    industry: "Aesthetics",
+    tag: "Full Growth System",
+    result: "Lead capture up 84% MoM",
+    quote: "Clean design and real results—exactly what we needed.",
+    quoteBy: "Lauren, Director",
+    liveUrl: "https://example.com",
+    images: {
+      desktop: "https://images.unsplash.com/photo-1556742393-d75f468bfcb0?q=80&w=1200",
+      mobile: "https://images.unsplash.com/photo-1512499617640-c2f999098c62?q=80&w=600"
+    }
+  }
 ]
 
-function ServiceCard({ service, index }: { service: ServiceCard; index: number }) {
-  const [isVisible, setIsVisible] = useState(false)
-  const cardRef = useRef<HTMLDivElement>(null)
+interface ClientStoriesProps {
+  projects?: Project[]
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true)
-          }, index * 100) // Stagger animation delay-100 to delay-500
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [index])
-
-  const Icon = service.icon
-
-  // Blue-purple color scheme for services
-  const glowColors = [
-    "bg-blue-400/30",
-    "bg-indigo-300/25",
-    "bg-purple-200/30",
-    "bg-blue-300/25",
-    "bg-indigo-400/30",
-    "bg-purple-300/25",
-  ]
-
+function ProjectSlide({ project, isActive }: { project: Project; isActive: boolean }) {
   return (
     <div
-      ref={cardRef}
-      className={`
-        relative group cursor-pointer
-        transition-all duration-700 ease-out transform
-        ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-        hover:scale-105
-      `}
+      className={`absolute inset-0 transition-all duration-300 ease-out ${
+        isActive ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+      }`}
     >
-      {/* Circular blurred glow behind card */}
-      <div
-        className={`
-          absolute inset-0 -z-10 rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-500
-          ${glowColors[index % glowColors.length]}
-        `}
-        style={{
-          transform: "scale(0.8)",
-        }}
-      />
-
-      {/* Glassmorphism card for light theme */}
-      <div className="relative bg-white/80 backdrop-blur-md border border-white/40 rounded-2xl p-8 shadow-xl shadow-blue-500/10 hover:bg-white/90 hover:border-white/60 hover:shadow-blue-500/20 transition-all duration-300">
-        {service.comingSoon && (
-          <div className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-            Coming Soon
+      <div className="grid lg:grid-cols-2 gap-12 items-center h-full">
+        {/* Left Column - Device Mockups */}
+        <div className="relative">
+          {/* Desktop Mockup */}
+          <div className="relative bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div className="bg-stone-900 rounded-lg p-2">
+              <div className="aspect-[16/10] rounded-lg overflow-hidden">
+                <img
+                  src={project.images.desktop}
+                  alt={`${project.name} website mockup`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
-        )}
+          
+          {/* Mobile Mockup - Overlapping */}
+          <div className="absolute -bottom-6 -right-6 w-28 h-48 bg-white rounded-xl shadow-lg p-3 transform rotate-12">
+            <div className="bg-stone-900 rounded-lg p-1">
+              <div className="aspect-[9/19.5] rounded-lg overflow-hidden">
+                <img
+                  src={project.images.mobile}
+                  alt={`${project.name} mobile website mockup`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <div className="flex flex-col items-center text-center space-y-4">
-          <div className="p-4 bg-gradient-to-br from-blue-500/20 to-indigo-400/20 rounded-2xl group-hover:from-blue-500/30 group-hover:to-indigo-400/30 transition-all duration-300 backdrop-blur-sm border border-white/20">
-            <Icon className="w-8 h-8 text-gray-800" />
+        {/* Right Column - Client Info */}
+        <div className="space-y-8">
+          {/* Tag */}
+          <div className="inline-block bg-stone-100 text-stone-700 text-xs font-medium px-4 py-2 rounded-full border border-stone-200">
+            {project.tag}
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-900 tracking-tight">{service.title}</h3>
+          {/* Client Name + Industry */}
+          <div>
+            <h3 className="text-3xl font-light text-stone-900 tracking-wide mb-2">
+              {project.name}
+            </h3>
+            <p className="text-stone-600 font-medium text-lg">
+              {project.industry}
+            </p>
+          </div>
 
-          <p className="text-gray-600 leading-relaxed text-sm font-normal">{service.description}</p>
+          {/* Result */}
+          <p className="text-xl text-stone-700 leading-relaxed font-medium">
+            {project.result}
+          </p>
+
+          {/* Quote */}
+          <blockquote className="border-l-4 border-rose-200 pl-8 py-4">
+            <p className="text-stone-700 italic text-lg leading-relaxed mb-3">
+              "{project.quote}"
+            </p>
+            <cite className="text-stone-600 not-italic font-medium">
+              — {project.quoteBy}
+            </cite>
+          </blockquote>
+
+          {/* Actions */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-6">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 bg-stone-100 border border-stone-300 text-stone-700 font-medium px-8 py-4 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group"
+            >
+              <span>View Live Site</span>
+              <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            {project.caseUrl && (
+              <a
+                href={project.caseUrl}
+                className="inline-flex items-center space-x-2 text-stone-600 hover:text-stone-900 font-medium px-8 py-4 underline-offset-4 hover:underline transition-all duration-300"
+              >
+                <span>Read Case Study</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-function AnimatedTitle() {
-  const [isVisible, setIsVisible] = useState(false)
-  const titleRef = useRef<HTMLDivElement>(null)
+function EmptyState() {
+  return (
+    <div className="flex items-center justify-center h-full">
+      <div className="text-center space-y-4">
+        <div className="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center mx-auto">
+          <ExternalLink className="w-8 h-8 text-stone-400" />
+        </div>
+        <h3 className="text-xl font-medium text-stone-900">Add projects to see this section come to life.</h3>
+        <p className="text-stone-600">Your client stories will appear here once you add some projects.</p>
+      </div>
+    </div>
+  )
+}
 
+export default function ClientStories({ projects }: ClientStoriesProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  // Use sample data if no projects provided
+  const displayProjects = projects && projects.length > 0 ? projects : SAMPLE_PROJECTS
+
+  // Auto-play functionality
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.3 },
-    )
+    if (!isAutoPlaying || displayProjects.length <= 1) return
 
-    if (titleRef.current) {
-      observer.observe(titleRef.current)
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % displayProjects.length)
+    }, 7000)
+
+    return () => clearInterval(interval)
+  }, [isAutoPlaying, displayProjects.length])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setCurrentIndex((prev) => (prev - 1 + displayProjects.length) % displayProjects.length)
+      } else if (e.key === 'ArrowRight') {
+        setCurrentIndex((prev) => (prev + 1) % displayProjects.length)
+      }
     }
 
-    return () => observer.disconnect()
-  }, [])
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [displayProjects.length])
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index)
+  }
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % displayProjects.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + displayProjects.length) % displayProjects.length)
+  }
+
+  // If no projects at all, show empty state
+  if (displayProjects.length === 0) {
+    return (
+      <section className="min-h-screen bg-stone-50 py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-light tracking-wide text-stone-900 mb-6">
+              Client Stories
+            </h2>
+            <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal">
+              Selected work with real results.
+            </p>
+          </div>
+
+          <div className="min-h-[680px] lg:min-h-[520px] flex items-center justify-center">
+            <EmptyState />
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
-    <div ref={titleRef} className="text-center mb-16">
-      <h2
-        className={`
-          text-4xl md:text-6xl font-semibold tracking-tight mb-6 
-          bg-gradient-to-r from-gray-900 via-blue-600 to-indigo-500 bg-clip-text text-transparent
-          transition-all duration-1000 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95"}
-          animate-gradient-x bg-[length:200%_200%]
-        `}
-        style={{
-          backgroundImage: "linear-gradient(-45deg, #111827, #2563eb, #6366f1, #8b5cf6, #111827)",
-          backgroundSize: "400% 400%",
-          animation: isVisible ? "gradient 8s ease infinite" : "none",
-        }}
-      >
-        What We Do
-      </h2>
-      <p
-        className={`
-          text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-normal
-          transition-all duration-1000 ease-out transform delay-300
-          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-        `}
-      >
-        We build complete growth systems that work together to scale your business. From websites to AI automation, we
-        handle the tech so you can focus on what matters.
-      </p>
-    </div>
-  )
-}
+    <section 
+      className="min-h-screen bg-boutique-section-animated py-24 px-6"
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
+    >
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-export default function WhatWeDoSection() {
-  return (
-    <section id="what-we-do-section" className="min-h-screen bg-[#f8f8f8] py-20 px-6 relative overflow-hidden">
-      {/* Blue-purple glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400 via-indigo-300 to-purple-200 rounded-full blur-3xl opacity-30 animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-indigo-300 via-blue-400 to-purple-300 rounded-full blur-3xl opacity-25 animate-pulse" />
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-br from-purple-200 via-blue-300 to-indigo-200 rounded-full blur-3xl opacity-20" />
-      <div className="absolute top-20 left-1/2 w-48 h-48 bg-gradient-to-br from-blue-300 via-indigo-200 to-purple-200 rounded-full blur-2xl opacity-25" />
-
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
-        {/* Animated Section Header */}
-        <AnimatedTitle />
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} />
-          ))}
+      <div className="max-w-[1200px] mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-light tracking-wide text-stone-900 mb-6">
+            Client Stories
+          </h2>
+          <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal">
+            Selected work with real results.
+          </p>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <p className="text-gray-500 mb-6 font-normal">Ready to transform your business with our growth systems?</p>
-          <button className="bg-gradient-to-r from-blue-500 to-indigo-400 text-white font-semibold py-4 px-8 rounded-full hover:from-blue-600 hover:to-indigo-500 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-blue-500/20 backdrop-blur-sm border border-white/20">
-            Get Started Today
-          </button>
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Navigation Arrows */}
+          {displayProjects.length > 1 && (
+            <>
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 p-3 text-stone-400 hover:text-stone-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-stone-300 rounded-full hover:bg-white/50"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-8 h-8" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 p-3 text-stone-400 hover:text-stone-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-stone-300 rounded-full hover:bg-white/50"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-8 h-8" />
+              </button>
+            </>
+          )}
+
+          {/* Carousel Content */}
+          <div 
+            ref={carouselRef}
+            className="relative overflow-hidden min-h-[680px] lg:min-h-[520px]"
+          >
+            {displayProjects.map((project, index) => (
+              <ProjectSlide 
+                key={project.name} 
+                project={project} 
+                isActive={index === currentIndex} 
+              />
+            ))}
+          </div>
+
+          {/* Dot Indicators */}
+          {displayProjects.length > 1 && (
+            <div className="flex justify-center space-x-3 mt-16">
+              {displayProjects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stone-300 ${
+                    index === currentIndex 
+                      ? "bg-stone-700 scale-110" 
+                      : "bg-stone-300 hover:bg-stone-500"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}</style>
     </section>
   )
 }

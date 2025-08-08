@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Brain, Code, Zap, Users, Target, Rocket } from "lucide-react"
+import { Brain, Code, Zap, Users, Target, Rocket, Sparkles } from "lucide-react"
 
 function AnimatedTitle() {
   const [isVisible, setIsVisible] = useState(false)
@@ -25,16 +25,15 @@ function AnimatedTitle() {
   }, [])
 
   return (
-    <div ref={titleRef} className="text-center mb-16">
+    <div ref={titleRef} className="text-center mb-20">
       <h2
         className={`
-          text-4xl md:text-6xl font-semibold tracking-tight mb-6 
-          bg-gradient-to-r from-gray-900 via-cyan-600 to-blue-500 bg-clip-text text-transparent
+          text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6
           transition-all duration-1000 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95"}
+          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
       >
-        Who We Are
+        who we are
       </h2>
     </div>
   )
@@ -50,9 +49,8 @@ function FloatingIcon({ icon: Icon, className, delay }: { icon: any; className: 
       }}
     >
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-400/20 rounded-2xl blur-xl"></div>
-        <div className="relative bg-white/80 backdrop-blur-md border border-white/40 rounded-2xl p-4 shadow-xl">
-          <Icon className="w-8 h-8 text-gray-700" />
+        <div className="relative bg-white/70 backdrop-blur-sm border border-stone-200/50 rounded-xl p-4 shadow-sm">
+          <Icon className="w-8 h-8 text-stone-700" />
         </div>
       </div>
     </div>
@@ -81,13 +79,11 @@ export default function AboutSection() {
   }, [])
 
   return (
-    <section className="min-h-screen bg-[#f8f8f8] py-20 px-6 relative overflow-hidden">
-      {/* Blue-cyan floating gradient shapes */}
-      <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-gradient-to-br from-cyan-400 via-blue-300 to-sky-200 rounded-full blur-3xl opacity-20 animate-pulse" />
-      <div className="absolute bottom-1/3 right-1/6 w-80 h-80 bg-gradient-to-br from-blue-400 via-cyan-300 to-teal-200 rounded-full blur-3xl opacity-15 animate-pulse" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-sky-300 via-cyan-200 to-blue-200 rounded-full blur-3xl opacity-10" />
+    <section className="min-h-screen bg-boutique-section-alt py-24 px-6">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 relative z-10">
         {/* Animated Section Header */}
         <AnimatedTitle />
 
@@ -101,25 +97,25 @@ export default function AboutSection() {
             `}
           >
             <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 text-sm font-medium text-cyan-600 bg-cyan-50 px-4 py-2 rounded-full">
-                <Rocket className="w-4 h-4" />
+              <div className="inline-flex items-center space-x-2 text-sm font-medium text-rose-700 bg-rose-50 px-4 py-2 rounded-full border border-rose-200">
+                <Sparkles className="w-4 h-4" />
                 <span>NEXGEN FOUNDED 2020</span>
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+              <h3 className="text-3xl md:text-4xl font-light text-stone-900 leading-tight tracking-wide">
                 We're growth obsessed{" "}
-                <span className="bg-gradient-to-r from-cyan-600 to-blue-500 bg-clip-text text-transparent">
+                <span className="font-medium text-rose-800">
                   next-gen architects
                 </span>
               </h3>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-stone-600 leading-relaxed">
                 Born from the frustration of seeing businesses struggle with fragmented digital solutions, NexGen set
                 out to create something different. Our team combines deep expertise in web development, AI automation,
                 and growth marketing to build next-generation systems that actually work together.
               </p>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-stone-600 leading-relaxed">
                 We don't just build websites or run ads in isolation. We architect complete growth ecosystems where
                 every component amplifies the others—from AI-powered chatbots that qualify leads to automated nurture
                 sequences that close deals while you sleep.
@@ -127,18 +123,18 @@ export default function AboutSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200">
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">4+</div>
-                <div className="text-sm text-gray-600">Years Experience</div>
+                <div className="text-2xl font-light text-stone-900">4+</div>
+                <div className="text-sm text-stone-600">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">500+</div>
-                <div className="text-sm text-gray-600">Systems Built</div>
+                <div className="text-2xl font-light text-stone-900">500+</div>
+                <div className="text-sm text-stone-600">Systems Built</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">98%</div>
-                <div className="text-sm text-gray-600">Client Retention</div>
+                <div className="text-2xl font-light text-stone-900">98%</div>
+                <div className="text-sm text-stone-600">Client Retention</div>
               </div>
             </div>
           </div>
@@ -154,14 +150,13 @@ export default function AboutSection() {
             {/* Central hub */}
             <div className="relative flex items-center justify-center">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
-                <div className="relative bg-white/90 backdrop-blur-md border border-white/50 rounded-3xl p-12 shadow-2xl">
+                <div className="relative bg-white/80 backdrop-blur-sm border border-stone-200/50 rounded-2xl p-12 shadow-sm">
                   <div className="text-center space-y-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-2xl flex items-center justify-center mx-auto">
-                      <Brain className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-center mx-auto">
+                      <Brain className="w-8 h-8 text-rose-700" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900">Growth Engine</h4>
-                    <p className="text-sm text-gray-600">AI-Powered Systems</p>
+                    <h4 className="text-xl font-medium text-stone-900">Growth Engine</h4>
+                    <p className="text-sm text-stone-600">AI-Powered Systems</p>
                   </div>
                 </div>
               </div>
@@ -177,8 +172,8 @@ export default function AboutSection() {
                 <svg className="w-full h-full" viewBox="0 0 400 400">
                   <defs>
                     <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.3" />
-                      <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.3" />
+                      <stop offset="0%" stopColor="#fda4af" stopOpacity="0.3" />
+                      <stop offset="100%" stopColor="#fb7185" stopOpacity="0.3" />
                     </linearGradient>
                   </defs>
                   <path

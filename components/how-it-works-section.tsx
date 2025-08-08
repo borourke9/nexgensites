@@ -48,17 +48,16 @@ function StepNode({ step, index, isVisible }: { step: Step; index: number; isVis
         `}
         style={{ transitionDelay: `${index * 200}ms` }}
       >
-        {/* Glowing dot */}
+        {/* Soft node */}
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-indigo-400 to-violet-400 rounded-full blur-lg opacity-60 animate-pulse"></div>
-          <div className="relative w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full flex items-center justify-center shadow-xl">
-            <Icon className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 bg-rose-50 border-2 border-rose-200 rounded-full flex items-center justify-center shadow-sm">
+            <Icon className="w-8 h-8 text-rose-700" />
           </div>
         </div>
 
         {/* Step number */}
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full border-2 border-purple-500 flex items-center justify-center">
-          <span className="text-xs font-bold text-purple-600">{step.number}</span>
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full border border-stone-300 flex items-center justify-center">
+          <span className="text-xs font-medium text-stone-700">{step.number}</span>
         </div>
       </div>
 
@@ -70,9 +69,9 @@ function StepNode({ step, index, isVisible }: { step: Step; index: number; isVis
         `}
         style={{ transitionDelay: `${index * 200 + 100}ms` }}
       >
-        <div className="bg-white/80 backdrop-blur-md border border-white/40 rounded-2xl p-6 shadow-xl shadow-purple-500/10 hover:shadow-purple-500/20 transition-all duration-300">
-          <h3 className="text-xl font-semibold text-gray-900 mb-3 tracking-tight">{step.title}</h3>
-          <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
+        <div className="bg-white/70 backdrop-blur-sm border border-stone-200/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+          <h3 className="text-xl font-medium text-stone-900 mb-3 tracking-wide">{step.title}</h3>
+          <p className="text-stone-600 text-sm leading-relaxed">{step.description}</p>
         </div>
       </div>
     </div>
@@ -84,19 +83,16 @@ function ConnectingLine({ isVisible, index }: { isVisible: boolean; index: numbe
     <div className="flex items-center justify-center flex-1 px-4">
       <div
         className={`
-          h-0.5 w-full bg-gradient-to-r from-purple-400 via-indigo-300 to-violet-300 relative
+          h-0.5 w-full bg-stone-300 relative
           transition-all duration-1000 ease-out transform origin-left
           ${isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}
         `}
         style={{ transitionDelay: `${index * 200 + 300}ms` }}
       >
-        {/* Animated glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-indigo-300 to-violet-300 blur-sm opacity-60"></div>
-
         {/* Moving dot animation */}
         <div
           className={`
-            absolute top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full border-2 border-purple-500
+            absolute top-1/2 transform -translate-y-1/2 w-2 h-2 bg-rose-500 rounded-full
             transition-all duration-2000 ease-out
             ${isVisible ? "left-full" : "left-0"}
           `}
@@ -129,20 +125,19 @@ function AnimatedTitle() {
   }, [])
 
   return (
-    <div ref={titleRef} className="text-center mb-16">
+    <div ref={titleRef} className="text-center mb-20">
       <h2
         className={`
-          text-4xl md:text-6xl font-semibold tracking-tight mb-6 
-          bg-gradient-to-r from-gray-900 via-purple-600 to-indigo-500 bg-clip-text text-transparent
+          text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6
           transition-all duration-1000 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95"}
+          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
       >
-        How It Works
+        how it works
       </h2>
       <p
         className={`
-          text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-normal
+          text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal
           transition-all duration-1000 ease-out transform delay-300
           ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
@@ -175,12 +170,11 @@ export default function HowItWorksSection() {
   }, [])
 
   return (
-    <section className="min-h-screen bg-[#f8f8f8] py-20 px-6 relative overflow-hidden">
-      {/* Purple-indigo background glow effects */}
-      <div className="absolute top-1/4 left-1/6 w-72 h-72 bg-gradient-to-br from-purple-400 via-indigo-300 to-violet-200 rounded-full blur-3xl opacity-20 animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/6 w-72 h-72 bg-gradient-to-br from-indigo-400 via-purple-300 to-violet-300 rounded-full blur-3xl opacity-15 animate-pulse" />
+    <section className="min-h-screen bg-boutique-section-alt py-24 px-6">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 relative z-10">
         {/* Animated Section Header */}
         <AnimatedTitle />
 
@@ -210,15 +204,14 @@ export default function HowItWorksSection() {
                   >
                     {/* Mobile node */}
                     <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-indigo-400 to-violet-400 rounded-full blur-lg opacity-60 animate-pulse"></div>
-                      <div className="relative w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full flex items-center justify-center shadow-xl">
-                        <step.icon className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 bg-rose-50 border-2 border-rose-200 rounded-full flex items-center justify-center shadow-sm">
+                        <step.icon className="w-6 h-6 text-rose-700" />
                       </div>
                     </div>
 
                     {/* Step number */}
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full border-2 border-purple-500 flex items-center justify-center">
-                      <span className="text-xs font-bold text-purple-600">{step.number}</span>
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full border border-stone-300 flex items-center justify-center">
+                      <span className="text-xs font-medium text-stone-700">{step.number}</span>
                     </div>
                   </div>
 
@@ -230,9 +223,9 @@ export default function HowItWorksSection() {
                     `}
                     style={{ transitionDelay: `${index * 200 + 100}ms` }}
                   >
-                    <div className="bg-white/80 backdrop-blur-md border border-white/40 rounded-2xl p-6 shadow-xl shadow-purple-500/10">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 tracking-tight">{step.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
+                    <div className="bg-white/70 backdrop-blur-sm border border-stone-200/50 rounded-xl p-6 shadow-sm">
+                      <h3 className="text-lg font-medium text-stone-900 mb-2 tracking-wide">{step.title}</h3>
+                      <p className="text-stone-600 text-sm leading-relaxed">{step.description}</p>
                     </div>
                   </div>
                 </div>
@@ -242,14 +235,12 @@ export default function HowItWorksSection() {
                   <div className="ml-6 mt-4 mb-4">
                     <div
                       className={`
-                        w-0.5 h-8 bg-gradient-to-b from-purple-400 via-indigo-300 to-violet-300 relative
+                        w-0.5 h-8 bg-stone-300 relative
                         transition-all duration-1000 ease-out transform origin-top
                         ${isVisible ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}
                       `}
                       style={{ transitionDelay: `${index * 200 + 300}ms` }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-b from-purple-400 via-indigo-300 to-violet-300 blur-sm opacity-60"></div>
-                    </div>
+                    ></div>
                   </div>
                 )}
               </div>
@@ -258,7 +249,7 @@ export default function HowItWorksSection() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-20">
           <div
             className={`
               transition-all duration-1000 ease-out transform
@@ -266,9 +257,10 @@ export default function HowItWorksSection() {
             `}
             style={{ transitionDelay: "800ms" }}
           >
-            <p className="text-gray-500 mb-6 font-normal">Ready to start your growth journey?</p>
-            <button className="bg-gradient-to-r from-purple-500 to-indigo-400 text-white font-semibold py-4 px-8 rounded-full hover:from-purple-600 hover:to-indigo-500 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-500/20">
+            <p className="text-stone-500 mb-8 font-normal">Ready to start your growth journey?</p>
+            <button className="border border-stone-300 text-stone-700 font-medium py-3 px-8 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group">
               Schedule Discovery Call
+              <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
             </button>
           </div>
         </div>

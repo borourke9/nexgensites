@@ -67,42 +67,45 @@ export default function Navigation() {
     <>
       <nav
         className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-300
+          fixed top-0 left-0 right-0 z-50 transition-all duration-500
           ${
             isScrolled
-              ? "bg-white/90 backdrop-blur-md border-b border-white/20 shadow-lg shadow-pink-500/10"
+              ? "bg-white/80 backdrop-blur-md border-b border-stone-200/50 shadow-sm"
               : "bg-transparent"
           }
         `}
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2">
-                <span className="text-2xl font-bold text-gray-900">NEXGEN</span>
+                <span className="text-xl font-light tracking-wide text-stone-900">NEXGEN</span>
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-8">
               {navigationItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
                   className={`
-                    px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 relative
+                    px-1 py-2 text-sm font-medium transition-all duration-300 relative group
                     ${
                       activeSection === item.href.replace("#", "")
-                        ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg shadow-pink-500/25"
-                        : "text-gray-700 hover:text-pink-600 hover:bg-pink-50"
+                        ? "text-stone-900"
+                        : "text-stone-600 hover:text-stone-900"
                     }
                   `}
                 >
                   {item.name}
+                  {/* Underline indicator for active item */}
                   {activeSection === item.href.replace("#", "") && (
-                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-stone-900"></div>
                   )}
+                  {/* Hover underline */}
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-stone-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </button>
               ))}
             </div>
@@ -111,18 +114,19 @@ export default function Navigation() {
             <div className="hidden lg:flex items-center space-x-4">
               <button
                 onClick={() => scrollToSection("#contact-section")}
-                className="bg-gradient-to-r from-pink-500 to-orange-400 text-white font-semibold px-6 py-3 rounded-full hover:from-pink-600 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30"
+                className="border border-stone-300 text-stone-700 font-medium px-6 py-2.5 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group"
               >
                 Get Started
+                <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
               </button>
             </div>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="lg:hidden p-2 rounded-none hover:bg-stone-100 transition-colors duration-300"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6 text-gray-700" /> : <Menu className="w-6 h-6 text-gray-700" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5 text-stone-700" /> : <Menu className="w-5 h-5 text-stone-700" />}
             </button>
           </div>
         </div>
@@ -130,7 +134,7 @@ export default function Navigation() {
         {/* Mobile Navigation Menu */}
         <div
           className={`
-            lg:hidden absolute top-full left-0 right-0 transition-all duration-300 ease-out
+            lg:hidden absolute top-full left-0 right-0 transition-all duration-500 ease-out
             ${
               isMobileMenuOpen
                 ? "opacity-100 translate-y-0 pointer-events-auto"
@@ -138,22 +142,22 @@ export default function Navigation() {
             }
           `}
         >
-          <div className="bg-white/95 backdrop-blur-md border-b border-white/20 shadow-xl shadow-pink-500/10 mx-4 mt-2 rounded-2xl overflow-hidden">
-            <div className="py-4">
+          <div className="bg-white/95 backdrop-blur-md border-b border-stone-200/50 shadow-lg mx-4 mt-2 rounded-none overflow-hidden">
+            <div className="py-6">
               {navigationItems.map((item, index) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
                   className={`
-                    w-full text-left px-6 py-3 text-base font-medium transition-all duration-200
+                    w-full text-left px-6 py-3 text-base font-medium transition-all duration-300 border-l-2 border-transparent
                     ${
                       activeSection === item.href.replace("#", "")
-                        ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white"
-                        : "text-gray-700 hover:bg-pink-50 hover:text-pink-600"
+                        ? "text-stone-900 border-stone-900 bg-stone-50"
+                        : "text-stone-600 hover:text-stone-900 hover:bg-stone-50 hover:border-stone-300"
                     }
                   `}
                   style={{
-                    transitionDelay: `${index * 50}ms`,
+                    transitionDelay: `${index * 75}ms`,
                   }}
                 >
                   {item.name}
@@ -161,10 +165,10 @@ export default function Navigation() {
               ))}
 
               {/* Mobile CTA */}
-              <div className="px-6 pt-4 pb-2">
+              <div className="px-6 pt-6 pb-2">
                 <button
                   onClick={() => scrollToSection("#contact-section")}
-                  className="w-full bg-gradient-to-r from-pink-500 to-orange-400 text-white font-semibold py-3 px-6 rounded-full hover:from-pink-600 hover:to-orange-500 transition-all duration-300 shadow-lg shadow-pink-500/25"
+                  className="w-full border border-stone-300 text-stone-700 font-medium py-3 px-6 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300"
                 >
                   Get Started
                 </button>
@@ -177,7 +181,7 @@ export default function Navigation() {
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}

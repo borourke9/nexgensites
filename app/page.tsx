@@ -1,15 +1,17 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import WhatWeDoSection from "@/components/what-we-do-section"
+import ClientStories from "@/components/what-we-do-section"
 import ResultsSection from "@/components/results-section"
 import HowItWorksSection from "@/components/how-it-works-section"
 import TestimonialsSection from "@/components/testimonials-section"
 import AboutSection from "@/components/about-section"
+import MeetFounderSection from "@/components/meet-founder-section"
 import PricingSection from "@/components/pricing-section"
 import ContactSection from "@/components/contact-section"
+import TrustSection from "@/components/trust-section"
 import ScrollIndicator from "@/components/scroll-indicator"
-import { ArrowRight, Sparkles, Zap, TrendingUp, CheckCircle, Star } from "lucide-react"
+import { ArrowRight, Sparkles, CheckCircle, Star, Play, Palette, Users, Heart, Building2, Car, Scissors, Sparkles as SparklesIcon } from "lucide-react"
 import Navigation from "@/components/navigation"
 import HeroBackground from "@/components/hero-background"
 import { useEffect, useState } from "react"
@@ -24,22 +26,23 @@ export default function Page() {
   }, [])
 
   return (
-    <>
+    <div>
       {/* Navigation */}
       <Navigation />
 
-      <div id="home" className="min-h-screen bg-[#f8f8f8] relative overflow-hidden pt-20">
-        {/* Multiple animated background elements */}
-        <HeroBackground />
+      <div id="home" className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 relative overflow-hidden">
+        {/* Subtle textured background */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
-        <main className="relative px-6 py-12 md:py-16">
+        <main className="relative px-6 py-12 md:py-20 lg:py-32">
           <div className="relative max-w-6xl mx-auto">
-            {/* Hero Content */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
+            {/* Hero Content - Center Aligned */}
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Left Content */}
+              <div className="text-center lg:text-left space-y-10">
                 {/* Badge with animation */}
                 <div 
-                  className={`flex items-center space-x-2 text-sm font-medium text-pink-600 bg-pink-50 px-3 py-1 rounded-full w-fit transition-all duration-1000 ease-out ${
+                  className={`inline-flex items-center space-x-2 text-sm font-medium text-rose-700 bg-rose-50 px-4 py-2 rounded-full border border-rose-200 transition-all duration-1000 ease-out ${
                     isLoaded 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 -translate-y-4'
@@ -47,68 +50,47 @@ export default function Page() {
                   style={{ transitionDelay: '200ms' }}
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>NEXGEN GROWTH SYSTEMS</span>
+                  <span>NEXGEN CREATIVE</span>
                 </div>
 
                 {/* Headline with animation */}
                 <h1 
-                  className={`text-5xl md:text-7xl font-bold leading-tight tracking-tight transition-all duration-1000 ease-out ${
+                  className={`text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-wide text-stone-900 transition-all duration-1000 ease-out ${
                     isLoaded 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 -translate-y-8'
                   }`}
                   style={{ transitionDelay: '400ms' }}
                 >
-                  Done-For-You
-                  <span className="block bg-gradient-to-r from-pink-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent">
-                    Growth Systems.
+                  We craft digital
+                  <span className="block font-medium text-rose-800">
+                    experiences that
+                  </span>
+                  <span className="block font-light text-stone-700">
+                    connect & convert.
                   </span>
                 </h1>
 
                 {/* Description with animation */}
                 <p 
-                  className={`text-xl leading-relaxed text-gray-600 max-w-lg transition-all duration-1000 ease-out ${
+                  className={`text-lg leading-relaxed text-stone-600 max-w-xl mx-auto lg:mx-0 font-medium transition-all duration-1000 ease-out ${
                     isLoaded 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 -translate-y-6'
                   }`}
                   style={{ transitionDelay: '600ms' }}
                 >
-                  We build and manage high-converting websites, ad campaigns, and AI-powered automations — so you can
-                  focus on running your business while we handle your digital growth.
+                  From websites that tell your story to AI that never sleeps — we build the digital foundation your business deserves.
                 </p>
 
-                {/* Trust badges with animation */}
+                {/* Buttons with enhanced hover animations */}
                 <div 
-                  className={`flex items-center space-x-6 transition-all duration-1000 ease-out ${
+                  className={`flex flex-col sm:flex-row gap-6 justify-center lg:justify-start transition-all duration-1000 ease-out ${
                     isLoaded 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 -translate-y-4'
                   }`}
                   style={{ transitionDelay: '800ms' }}
-                >
-                  <div className="flex items-center space-x-2">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <span className="text-sm text-gray-600">4.9/5 Rating</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span className="text-sm text-gray-600">Free Strategy Call</span>
-                  </div>
-                </div>
-
-                {/* Buttons with animation */}
-                <div 
-                  className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 ease-out ${
-                    isLoaded 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 -translate-y-4'
-                  }`}
-                  style={{ transitionDelay: '1000ms' }}
                 >
                   <Button
                     onClick={() => {
@@ -121,54 +103,44 @@ export default function Page() {
                         })
                       }
                     }}
-                    className="bg-gradient-to-r from-pink-500 to-orange-400 hover:from-pink-600 hover:to-orange-500 text-white font-semibold px-8 py-4 rounded-full shadow-xl shadow-pink-500/25 border-0 group cursor-pointer transform hover:scale-105 transition-all duration-300"
+                    className="bg-stone-900 hover:bg-stone-800 text-white font-medium px-8 py-3 rounded-none border border-stone-900 group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
                   >
-                    🚀 Build My System
+                    Build My System
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                   <Button
-                    onClick={() => {
-                      const resultsSection = document.getElementById("results-section")
-                      if (resultsSection) {
-                        const offsetTop = resultsSection.offsetTop - 80
-                        window.scrollTo({
-                          top: offsetTop,
-                          behavior: "smooth",
-                        })
-                      }
-                    }}
-                    variant="outline"
-                    className="border-2 border-gray-300 hover:border-pink-400 px-8 py-4 rounded-full font-semibold bg-transparent cursor-pointer hover:bg-pink-50 transition-all duration-300"
+                    variant="ghost"
+                    className="text-stone-700 hover:text-rose-700 px-8 py-3 font-medium underline-offset-4 hover:underline transition-all duration-300 hover:scale-105"
                   >
-                    View Case Studies
+                    Watch Demo
                   </Button>
                 </div>
 
-                {/* Enhanced Stats with animation */}
+                {/* Trust badges with animation */}
                 <div 
-                  className={`grid grid-cols-3 gap-6 pt-8 transition-all duration-1000 ease-out ${
+                  className={`flex items-center justify-center lg:justify-start space-x-8 transition-all duration-1000 ease-out ${
                     isLoaded 
                       ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-6'
+                      : 'opacity-0 -translate-y-4'
                   }`}
-                  style={{ transitionDelay: '1200ms' }}
+                  style={{ transitionDelay: '1000ms' }}
                 >
-                  <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/40">
-                    <div className="text-3xl font-bold text-gray-900 mb-1">500+</div>
-                    <div className="text-sm text-gray-600">Projects Delivered</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
+                      ))}
+                    </div>
+                    <span className="text-sm text-stone-600">4.9/5 Rating</span>
                   </div>
-                  <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/40">
-                    <div className="text-3xl font-bold text-gray-900 mb-1">98%</div>
-                    <div className="text-sm text-gray-600">Client Satisfaction</div>
-                  </div>
-                  <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/40">
-                    <div className="text-3xl font-bold text-gray-900 mb-1">24/7</div>
-                    <div className="text-sm text-gray-600">Support</div>
+                  <div className="flex items-center space-x-2">
+                    <Heart className="w-4 h-4 text-rose-500" />
+                    <span className="text-sm text-stone-600">Handcrafted with care</span>
                   </div>
                 </div>
               </div>
 
-              {/* Right side visual elements with animation */}
+              {/* Right side - Real Business Mockup */}
               <div 
                 className={`relative transition-all duration-1000 ease-out ${
                   isLoaded 
@@ -177,93 +149,88 @@ export default function Page() {
                 }`}
                 style={{ transitionDelay: '600ms' }}
               >
-                <div className="relative bg-white/80 backdrop-blur-sm border border-white/40 rounded-3xl p-8 shadow-2xl">
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-sm font-medium">System Active</span>
+                <div className="relative">
+                  {/* Main business mockup */}
+                  <div className="relative bg-white/90 backdrop-blur-sm border border-stone-200 rounded-2xl p-8 shadow-lg">
+                    <div className="aspect-[4/3] bg-gradient-to-br from-stone-100 to-rose-50 rounded-xl overflow-hidden">
+                      {/* Spa/Wellness Business Mockup */}
+                      <div className="h-full bg-gradient-to-br from-rose-50 to-amber-50 p-6 flex flex-col justify-between">
+                        <div className="text-center space-y-3">
+                          <div className="w-12 h-12 bg-rose-200 rounded-full flex items-center justify-center mx-auto">
+                            <SparklesIcon className="w-6 h-6 text-rose-600" />
+                          </div>
+                          <div className="space-y-1">
+                            <h3 className="text-lg font-medium text-stone-900">Serenity Spa & Wellness</h3>
+                            <p className="text-sm text-stone-600">Premium spa services & treatments</p>
+                          </div>
+                        </div>
+                        
+                        {/* Mock website elements */}
+                        <div className="space-y-2">
+                          <div className="h-2 bg-rose-200 rounded-full"></div>
+                          <div className="h-2 bg-rose-100 rounded-full w-3/4"></div>
+                          <div className="h-2 bg-rose-50 rounded-full w-1/2"></div>
+                        </div>
                       </div>
-                      <TrendingUp className="w-5 h-5 text-green-500" />
                     </div>
-
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-pink-50 to-orange-50 rounded-xl">
-                        <span className="text-sm font-medium">Website Conversion</span>
-                        <span className="text-sm font-bold text-pink-600">+127%</span>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
-                        <span className="text-sm font-medium">Lead Generation</span>
-                        <span className="text-sm font-bold text-blue-600">+89%</span>
-                      </div>
-                      <div className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl">
-                        <span className="text-sm font-medium">Revenue Growth</span>
-                        <span className="text-sm font-bold text-green-600">+156%</span>
-                      </div>
+                    
+                    {/* Overlay elements for visual interest */}
+                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center border border-rose-200">
+                      <Palette className="w-6 h-6 text-rose-600" />
                     </div>
+                    <div className="absolute -bottom-4 -left-4 w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center border border-stone-200">
+                      <Heart className="w-5 h-5 text-stone-600" />
+                    </div>
+                  </div>
 
-                    <div className="pt-4 border-t border-gray-200">
-                      <div className="flex items-center space-x-2">
-                        <Zap className="w-4 h-4 text-yellow-500" />
-                        <span className="text-xs text-gray-600">AI-Powered Optimization Running</span>
+                  {/* Floating testimonial card with fade-up animation */}
+                  <div 
+                    className={`absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-sm border border-stone-200 rounded-xl p-4 shadow-lg max-w-xs transition-all duration-1000 ease-out ${
+                      isLoaded 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-4'
+                    }`}
+                    style={{ transitionDelay: '1200ms' }}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
+                        <span className="text-sm font-medium text-rose-700">S</span>
+                      </div>
+                      <div>
+                        <p className="text-sm text-stone-700 font-medium">"They transformed our online presence completely."</p>
+                        <p className="text-xs text-stone-500 mt-1">Sarah, Serenity Spa</p>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-pink-500 to-orange-400 rounded-full animate-bounce"></div>
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-400 rounded-full animate-pulse"></div>
               </div>
             </div>
 
-            {/* Enhanced Trust indicators with animation */}
+
+
+            {/* Trust Section */}
             <div 
-              className={`mt-16 pt-8 border-t border-gray-200 transition-all duration-1000 ease-out ${
+              className={`mt-24 transition-all duration-1000 ease-out ${
                 isLoaded 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
               }`}
-              style={{ transitionDelay: '1400ms' }}
+              style={{ transitionDelay: '1600ms' }}
             >
-              <div className="text-center mb-8">
-                <p className="text-sm text-gray-500 font-medium mb-4">TRUSTED BY FORWARD-THINKING BUSINESSES</p>
-                <div className="flex justify-center items-center space-x-12 opacity-60">
-                  <div className="text-lg font-bold text-gray-400">STARTUPS</div>
-                  <div className="text-lg font-bold text-gray-400">SCALE-UPS</div>
-                  <div className="text-lg font-bold text-gray-400">ENTERPRISES</div>
-                  <div className="text-lg font-bold text-gray-400">AGENCIES</div>
-                </div>
-              </div>
-              
-              {/* Additional trust elements */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">$200k+</div>
-                  <div className="text-sm text-gray-600">Revenue Generated</div>
-                </div>
-                <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">15,000+</div>
-                  <div className="text-sm text-gray-600">Leads Generated</div>
-                </div>
-                <div className="text-center p-4 bg-white/40 backdrop-blur-sm rounded-xl">
-                  <div className="text-2xl font-bold text-gray-900 mb-2">3.2x</div>
-                  <div className="text-sm text-gray-600">Average ROI</div>
-                </div>
-              </div>
+              <TrustSection />
             </div>
           </div>
 
           {/* Scroll Indicator */}
-          <div className="mt-12">
+          <div className="mt-16">
             <ScrollIndicator />
           </div>
         </main>
       </div>
 
-      {/* What We Do Section */}
-      <div id="what-we-do-section">
-        <WhatWeDoSection />
+      {/* Client Stories Section */}
+      <div id="client-stories-section">
+        <ClientStories />
       </div>
 
       {/* Results Section */}
@@ -286,6 +253,11 @@ export default function Page() {
         <AboutSection />
       </div>
 
+      {/* Meet the Founder Section */}
+      <div id="meet-founder-section">
+        <MeetFounderSection />
+      </div>
+
       {/* Pricing Section */}
       <div id="pricing-section">
         <PricingSection />
@@ -295,6 +267,6 @@ export default function Page() {
       <div id="contact-section">
         <ContactSection />
       </div>
-    </>
+    </div>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Star } from "lucide-react"
+import { Star, Heart } from "lucide-react"
 
 interface Testimonial {
   name: string
@@ -79,16 +79,6 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
     return () => observer.disconnect()
   }, [index])
 
-  // Orange-red warm color scheme for testimonials
-  const avatarColors = [
-    "bg-gradient-to-br from-orange-500 to-red-400",
-    "bg-gradient-to-br from-red-500 to-pink-400",
-    "bg-gradient-to-br from-amber-500 to-orange-400",
-    "bg-gradient-to-br from-rose-500 to-red-400",
-    "bg-gradient-to-br from-orange-600 to-amber-400",
-    "bg-gradient-to-br from-red-600 to-rose-400",
-  ]
-
   return (
     <div
       ref={cardRef}
@@ -96,48 +86,39 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
         relative group cursor-pointer flex-shrink-0 w-full max-w-sm
         transition-all duration-700 ease-out transform
         ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-        hover:scale-105
+        hover:scale-[1.02]
       `}
     >
-      {/* Soft glow behind card */}
-      <div className="absolute inset-0 -z-10 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br from-orange-300/40 via-red-200/30 to-amber-200/40" />
-
-      {/* Glassmorphism card */}
-      <div className="relative bg-white/80 backdrop-blur-md border border-white/40 rounded-2xl p-6 shadow-xl shadow-orange-500/10 hover:shadow-orange-500/20 hover:bg-white/90 hover:border-white/60 transition-all duration-300 h-full">
+      {/* Soft card with minimal elevation */}
+      <div className="relative bg-white/70 backdrop-blur-sm border border-stone-200/50 rounded-xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 hover:border-stone-300/50 transition-all duration-300 h-full">
         {/* Stars */}
         <div className="flex space-x-1 mb-4">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
           ))}
         </div>
 
         {/* Quote */}
-        <blockquote className="text-gray-700 leading-relaxed mb-6 text-sm font-normal">
+        <blockquote className="text-stone-700 leading-relaxed mb-6 text-sm font-normal italic">
           "{testimonial.quote}"
         </blockquote>
 
         {/* Client info */}
         <div className="flex items-center space-x-3">
           {/* Avatar */}
-          <div
-            className={`
-              w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm
-              ${avatarColors[index % avatarColors.length]}
-              shadow-lg
-            `}
-          >
+          <div className="w-12 h-12 bg-rose-100 border border-rose-200 rounded-full flex items-center justify-center text-rose-700 font-medium text-sm">
             {testimonial.initials}
           </div>
 
           {/* Name and role */}
           <div>
-            <div className="font-semibold text-gray-900 text-sm">{testimonial.name}</div>
-            <div className="text-xs text-gray-500 font-medium">{testimonial.role}</div>
+            <div className="font-medium text-stone-900 text-sm">{testimonial.name}</div>
+            <div className="text-xs text-stone-500 font-normal">{testimonial.role}</div>
           </div>
         </div>
 
         {/* Decorative quote mark */}
-        <div className="absolute top-4 right-4 text-6xl text-orange-200 font-serif leading-none opacity-20">"</div>
+        <div className="absolute top-4 right-4 text-4xl text-rose-200 font-serif leading-none opacity-30">"</div>
       </div>
     </div>
   )
@@ -165,20 +146,19 @@ function AnimatedTitle() {
   }, [])
 
   return (
-    <div ref={titleRef} className="text-center mb-16">
+    <div ref={titleRef} className="text-center mb-20">
       <h2
         className={`
-          text-4xl md:text-6xl font-semibold tracking-tight mb-6 
-          bg-gradient-to-r from-gray-900 via-orange-600 to-red-500 bg-clip-text text-transparent
+          text-3xl md:text-4xl font-light tracking-wide text-stone-900 mb-6
           transition-all duration-1000 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-95"}
+          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
       >
-        What Our Clients Say
+        what our clients say
       </h2>
       <p
         className={`
-          text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-normal
+          text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed font-normal
           transition-all duration-1000 ease-out transform delay-300
           ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
         `}
@@ -191,13 +171,11 @@ function AnimatedTitle() {
 
 export default function TestimonialsSection() {
   return (
-    <section className="min-h-screen bg-[#f8f8f8] py-20 px-6 relative overflow-hidden">
-      {/* Orange-red background glow effects */}
-      <div className="absolute top-1/4 left-1/5 w-80 h-80 bg-gradient-to-br from-orange-400 via-red-300 to-amber-200 rounded-full blur-3xl opacity-15 animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/5 w-80 h-80 bg-gradient-to-br from-red-400 via-orange-300 to-rose-200 rounded-full blur-3xl opacity-10 animate-pulse" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-amber-300 via-orange-200 to-red-200 rounded-full blur-3xl opacity-8" />
+    <section className="min-h-screen bg-boutique-section py-24 px-6">
+      {/* Subtle texture overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 relative z-10">
         {/* Animated Section Header */}
         <AnimatedTitle />
 
@@ -218,20 +196,21 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Bottom section with trust indicators */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center space-x-4 text-sm font-medium text-gray-500 bg-white/60 backdrop-blur-sm px-6 py-3 rounded-full border border-white/40">
+        <div className="text-center mt-20">
+          <div className="inline-flex items-center space-x-4 text-sm font-medium text-stone-500 bg-white/60 backdrop-blur-sm px-6 py-3 rounded-full border border-stone-200/50">
             <div className="flex space-x-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
               ))}
             </div>
             <span>4.9/5 from 200+ NexGen clients</span>
           </div>
 
-          <div className="mt-8">
-            <p className="text-gray-500 mb-6 font-normal">Join the next generation of successful businesses</p>
-            <button className="bg-gradient-to-r from-orange-500 to-red-400 text-white font-semibold py-4 px-8 rounded-full hover:from-orange-600 hover:to-red-500 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-orange-500/20">
+          <div className="mt-12">
+            <p className="text-stone-500 mb-8 font-normal">Join the next generation of successful businesses</p>
+            <button className="border border-stone-300 text-stone-700 font-medium py-3 px-8 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group">
               Start Your NexGen Journey
+              <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
             </button>
           </div>
         </div>
