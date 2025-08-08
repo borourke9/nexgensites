@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Wrench, Scissors, Home, Car, Heart, ShoppingCart } from "lucide-react"
 
 export default function TrustSection() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -11,31 +11,42 @@ export default function TrustSection() {
     return () => clearTimeout(timer)
   }, [])
 
-  const clientLogos = [
+  const industries = [
     {
-      name: "Northside Electric",
-      logo: "/placeholder-logo.svg",
-      url: "#"
+      name: "Custom Fabrication",
+      icon: Wrench,
+      caption: "Bespoke builds",
+      bgImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=70"
     },
     {
-      name: "Serenity Spa",
-      logo: "/placeholder-logo.svg", 
-      url: "#"
+      name: "Beauty & Wellness",
+      icon: Scissors,
+      caption: "Premium care spaces",
+      bgImage: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=70"
     },
     {
-      name: "Happy Trails RV",
-      logo: "/placeholder-logo.svg",
-      url: "#"
+      name: "Real Estate",
+      icon: Home,
+      caption: "Dream home showcases",
+      bgImage: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=70"
     },
     {
-      name: "Harbor View Med Spa",
-      logo: "/placeholder-logo.svg",
-      url: "#"
+      name: "Automotive",
+      icon: Car,
+      caption: "Performance & precision",
+      bgImage: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=70"
     },
     {
-      name: "Local Business",
-      logo: "/placeholder-logo.svg",
-      url: "#"
+      name: "Healthcare",
+      icon: Heart,
+      caption: "Trusted medical care",
+      bgImage: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&q=70"
+    },
+    {
+      name: "E-Commerce",
+      icon: ShoppingCart,
+      caption: "Digital storefronts",
+      bgImage: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=70"
     }
   ]
 
@@ -63,43 +74,69 @@ export default function TrustSection() {
   ]
 
   return (
-    <section className="py-20 bg-boutique-section-animated relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden bg-gradient-to-b from-amber-50 via-rose-50 to-stone-100">
       {/* Subtle texture overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
       
       <div className="relative max-w-6xl mx-auto px-6">
-        {/* Client Logos Section */}
+        {/* Industries We Serve Section */}
         <div 
-          className={`text-center mb-16 transition-all duration-1000 ease-out ${
+          className={`text-center mb-12 transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
           style={{ transitionDelay: '200ms' }}
         >
-          <h3 className="text-sm font-medium text-stone-600 mb-8 tracking-wider">
-            TRUSTED BY BUSINESSES NATIONWIDE
+          <h3 className="text-lg font-semibold text-stone-800 mb-2 tracking-wide">
+            Industries We Serve
           </h3>
+          <div className="w-16 h-0.5 bg-gradient-to-r from-rose-300 to-amber-300 mx-auto mb-10"></div>
           
-          {/* Logos Grid */}
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 lg:gap-20 mb-8">
-            {clientLogos.map((client, index) => (
-              <div
-                key={client.name}
-                className="group transition-all duration-300 ease-out hover:scale-105"
-                style={{ transitionDelay: `${400 + index * 100}ms` }}
-              >
-                <div className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center">
-                  <img
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100"
-                  />
+          {/* Industries Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+            {industries.map((industry, index) => {
+              const IconComponent = industry.icon
+              return (
+                <div
+                  key={industry.name}
+                  className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-out aspect-[4/3] ring-1 ring-white/20"
+                  style={{ transitionDelay: `${400 + index * 100}ms` }}
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.05]">
+                    <img
+                      src={industry.bgImage}
+                      alt={`${industry.name} background`}
+                      className="w-full h-full object-cover filter brightness-110 contrast-105 saturate-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  {/* Enhanced Duotone Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-rose-100/60 via-amber-50/50 to-stone-100/60 group-hover:from-rose-200/70 group-hover:via-amber-100/60 group-hover:to-stone-200/70 transition-all duration-300"></div>
+                  
+                  {/* Subtle vignette for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-stone-900/10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent"></div>
+                  
+                  {/* Content */}
+                  <div className="relative h-full flex flex-col items-center justify-center p-6 text-center">
+                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/95 backdrop-blur-sm shadow-xl mb-4 group-hover:-translate-y-1 group-hover:shadow-2xl transition-all duration-300 ring-2 ring-white/30">
+                      <IconComponent className="w-8 h-8 text-stone-700" />
+                    </div>
+                    <h4 className="text-sm font-bold text-stone-900 mb-1 leading-tight drop-shadow-sm">
+                      {industry.name}
+                    </h4>
+                    <p className="text-xs text-stone-700 font-semibold drop-shadow-sm">
+                      {industry.caption}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* CTA Link */}
-          <div className="mt-8">
+          <div className="mt-12">
             <a
               href="#client-stories-section"
               className="inline-flex items-center text-sm text-stone-600 hover:text-stone-800 transition-colors duration-200 group"
