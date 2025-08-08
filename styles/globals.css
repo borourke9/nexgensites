@@ -10,6 +10,40 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Custom responsive utilities for ultra-wide screens */
+  .max-w-8xl {
+    max-width: 88rem; /* 1408px */
+  }
+  
+  .max-w-9xl {
+    max-width: 96rem; /* 1536px */
+  }
+}
+
+/* Ultra-wide screen responsive adjustments */
+@media (min-width: 1536px) {
+  .hero-ultra-wide {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  
+  .text-ultra-wide {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-ultra-wide {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+  
+  .text-ultra-wide {
+    font-size: 5rem;
+    line-height: 1;
+  }
 }
 
 @layer base {

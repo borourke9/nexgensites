@@ -74,11 +74,11 @@ export default function TrustSection() {
   ]
 
   return (
-    <section className="py-16 relative overflow-hidden bg-gradient-to-b from-amber-50 via-rose-50 to-stone-100">
+    <section className="py-12 sm:py-16 lg:py-20 xl:py-24 relative overflow-hidden bg-gradient-to-b from-amber-50 via-rose-50 to-stone-100">
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
       
-      <div className="relative max-w-6xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Industries We Serve Section */}
         <div 
           className={`text-center mb-12 transition-all duration-1000 ease-out ${
@@ -91,8 +91,8 @@ export default function TrustSection() {
           </h3>
           <div className="w-16 h-0.5 bg-gradient-to-r from-rose-300 to-amber-300 mx-auto mb-10"></div>
           
-          {/* Industries Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto">
+          {/* Industries Grid - Responsive Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 max-w-6xl mx-auto">
             {industries.map((industry, index) => {
               const IconComponent = industry.icon
               return (
@@ -119,11 +119,11 @@ export default function TrustSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent"></div>
                   
                   {/* Content */}
-                  <div className="relative h-full flex flex-col items-center justify-center p-6 text-center">
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-white/95 backdrop-blur-sm shadow-xl mb-4 group-hover:-translate-y-1 group-hover:shadow-2xl transition-all duration-300 ring-2 ring-white/30">
-                      <IconComponent className="w-8 h-8 text-stone-700" />
+                  <div className="relative h-full flex flex-col items-center justify-center p-4 sm:p-6 text-center">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/95 backdrop-blur-sm shadow-xl mb-3 sm:mb-4 group-hover:-translate-y-1 group-hover:shadow-2xl transition-all duration-300 ring-2 ring-white/30">
+                      <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-stone-700" />
                     </div>
-                    <h4 className="text-sm font-bold text-stone-900 mb-1 leading-tight drop-shadow-sm">
+                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 mb-1 leading-tight drop-shadow-sm">
                       {industry.name}
                     </h4>
                     <p className="text-xs text-stone-700 font-semibold drop-shadow-sm">

@@ -75,17 +75,17 @@ export default function Navigation() {
           }
         `}
       >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-2">
-                <span className="text-xl font-light tracking-wide text-stone-900">NEXGEN</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-light tracking-wide text-stone-900">NEXGEN</span>
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {navigationItems.map((item) => (
                 <button
                   key={item.name}

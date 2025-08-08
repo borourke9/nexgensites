@@ -28,16 +28,16 @@ export default function ContactSection() {
   }, [])
 
   return (
-    <section className="min-h-screen bg-boutique-section py-24 px-6">
+    <section className="min-h-screen bg-boutique-section py-12 sm:py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 xl:px-12">
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-      <div ref={sectionRef} className="max-w-6xl mx-auto px-4 relative z-10">
+      <div ref={sectionRef} className="max-w-7xl mx-auto relative z-10">
         {/* Main CTA */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <h2
             className={`
-              text-3xl md:text-5xl font-light tracking-wide mb-8 leading-tight
+              text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-wide mb-6 sm:mb-8 leading-tight
               transition-all duration-1000 ease-out transform
               ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
             `}
