@@ -30,8 +30,8 @@ const SAMPLE_PROJECTS: Project[] = [
     quoteBy: "Mike, Owner",
     liveUrl: "https://happy-trails-rv-rental.com/",
     images: {
-      desktop: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=1200",
-      mobile: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=600"
+      desktop: "/back.png",
+      mobile: "/back.png"
     }
   },
   {
