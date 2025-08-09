@@ -44,8 +44,8 @@ const SAMPLE_PROJECTS: Project[] = [
     quoteBy: "Mike, Owner",
     liveUrl: "https://example.com",
     images: {
-      desktop: "/malone_electrical_compressed_small.png",
-      mobile: "/malone_electrical_compressed_small.png"
+      desktop: "/malone_electrical_optimized.jpg",
+      mobile: "/malone_electrical_optimized.jpg"
     }
   },
   {
