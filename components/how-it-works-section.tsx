@@ -1,15 +1,15 @@
 "use client"
 
-import React from "react"
-
-import { useEffect, useRef, useState } from "react"
-import { Phone, Wrench, TrendingUp } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react"
+import { motion, Variants } from "framer-motion"
+import { Phone, Wrench, TrendingUp, ArrowRight } from "lucide-react"
 import SectionHeading from "./section-heading"
 
 interface Step {
-  icon: any
+  icon: React.ComponentType<{ className?: string }>
   title: string
   description: string
+  deliverables: string
   number: string
 }
 
@@ -17,89 +17,133 @@ const steps: Step[] = [
   {
     icon: Phone,
     title: "Discovery Call",
-    description:
-      "We analyze your business, identify growth opportunities, and create a custom strategy tailored to your goals.",
+    description: "We analyze your business and create a custom strategy tailored to your goals.",
+    deliverables: "Strategy roadmap, competitive analysis, growth opportunities",
     number: "01",
   },
   {
     icon: Wrench,
     title: "System Build",
-    description:
-      "Our team builds and implements your complete growth system with cutting-edge technology and proven frameworks.",
+    description: "Our team builds your complete growth system with cutting-edge technology.",
+    deliverables: "Website, AI tools, automation, tracking setup",
     number: "02",
   },
   {
     icon: TrendingUp,
-    title: "Ongoing Optimization",
-    description: "We continuously monitor, optimize, and scale your systems to maximize performance and ROI.",
+    title: "Ongoing Optimization", 
+    description: "We continuously monitor and scale your systems to maximize performance.",
+    deliverables: "Monthly reports, A/B testing, performance optimization",
     number: "03",
   },
 ]
 
-function StepNode({ step, index, isVisible }: { step: Step; index: number; isVisible: boolean }) {
+function TimelineStep({ step, index }: { step: Step; index: number }) {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
   const Icon = step.icon
 
+  const variants: Variants | undefined = prefersReducedMotion ? undefined : {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.2,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  }
+
   return (
-    <div className="flex flex-col items-center relative">
-      {/* Timeline Node */}
-      <div
-        className={`
-          relative z-10 transition-all duration-700 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"}
-        `}
-        style={{ transitionDelay: `${index * 200}ms` }}
-      >
-        {/* Soft node */}
-        <div className="relative">
-          <div className="w-16 h-16 bg-rose-50 border-2 border-rose-200 rounded-full flex items-center justify-center shadow-sm">
-            <Icon className="w-8 h-8 text-rose-700" />
+    <motion.div
+      className="flex flex-col items-center relative flex-1"
+      variants={variants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      {/* Step Card */}
+      <div className="bg-white/60 backdrop-blur-sm border border-stone-200/30 rounded-2xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-300 w-full max-w-sm mb-8 min-h-[200px] flex flex-col justify-between">
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <div className="relative group">
+              <div className="w-12 h-12 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300">
+                <Icon className="w-6 h-6 text-rose-700 group-hover:-translate-y-0.5 transition-transform duration-300" />
+              </div>
+              <div className="absolute -inset-2 bg-rose-200/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+            </div>
+            <div className="text-2xl font-light text-stone-400">{step.number}</div>
           </div>
+          
+          <h3 className="text-lg font-medium text-stone-900 mb-2 tracking-wide">
+            {step.title}
+          </h3>
+          <p className="text-stone-600 text-sm leading-relaxed mb-3">
+            {step.description}
+          </p>
         </div>
-
-        {/* Step number */}
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full border border-stone-300 flex items-center justify-center">
-          <span className="text-xs font-medium text-stone-700">{step.number}</span>
-        </div>
-      </div>
-
-      {/* Content Card */}
-      <div
-        className={`
-          mt-8 max-w-sm transition-all duration-700 ease-out transform
-          ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}
-        `}
-        style={{ transitionDelay: `${index * 200 + 100}ms` }}
-      >
-        <div className="bg-white/70 backdrop-blur-sm border border-stone-200/50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-          <h3 className="text-xl font-medium text-stone-900 mb-3 tracking-wide">{step.title}</h3>
-          <p className="text-stone-600 text-sm leading-relaxed">{step.description}</p>
+        
+        <div className="pt-2 border-t border-stone-200/50">
+          <p className="text-xs text-stone-500 leading-relaxed">
+            <span className="font-medium">Deliverables:</span> {step.deliverables}
+          </p>
         </div>
       </div>
-    </div>
+
+      {/* Timeline Marker */}
+      <div className="relative z-10 w-8 h-8 bg-gradient-to-br from-rose-100 to-rose-200 border-2 border-white rounded-full flex items-center justify-center shadow-lg">
+        <div className="w-2 h-2 bg-rose-600 rounded-full"></div>
+        <div className="absolute -inset-1 bg-rose-300/30 rounded-full animate-pulse"></div>
+      </div>
+    </motion.div>
   )
 }
 
-function ConnectingLine({ isVisible, index }: { isVisible: boolean; index: number }) {
+function TimelineConnector() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  const variants: Variants | undefined = prefersReducedMotion ? undefined : {
+    hidden: { scaleX: 0 },
+    visible: { 
+      scaleX: 1,
+      transition: {
+        duration: 1,
+        delay: 0.8,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  }
+
   return (
-    <div className="flex items-center justify-center flex-1 px-4">
-      <div
-        className={`
-          h-0.5 w-full bg-stone-300 relative
-          transition-all duration-1000 ease-out transform origin-left
-          ${isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"}
-        `}
-        style={{ transitionDelay: `${index * 200 + 300}ms` }}
-      >
-        {/* Moving dot animation */}
-        <div
-          className={`
-            absolute top-1/2 transform -translate-y-1/2 w-2 h-2 bg-rose-500 rounded-full
-            transition-all duration-2000 ease-out
-            ${isVisible ? "left-full" : "left-0"}
-          `}
-          style={{ transitionDelay: `${index * 200 + 500}ms` }}
-        ></div>
-      </div>
+    <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-stone-300/50 -translate-y-1/2 z-0">
+      <motion.div
+        className="h-full bg-gradient-to-r from-rose-300 to-rose-400 origin-left"
+        variants={variants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      />
     </div>
   )
 }
@@ -107,126 +151,150 @@ function ConnectingLine({ isVisible, index }: { isVisible: boolean; index: numbe
 
 
 export default function HowItWorksSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.2 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
+  const containerVariants: Variants | undefined = prefersReducedMotion ? undefined : {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants: Variants | undefined = prefersReducedMotion ? undefined : {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  }
+
   return (
-    <section className="min-h-screen bg-boutique-section-alt py-24 px-6">
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+    <div className="relative max-w-6xl mx-auto">
+      {/* Section Header */}
+      <SectionHeading 
+        title="How it"
+        accentText="works"
+        subtitle="Our proven 3-step process transforms your business with systematic growth solutions that deliver results."
+        showUnderline={true}
+      />
 
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
-        {/* Enhanced Section Header */}
-        <SectionHeading 
-          title="How it"
-          accentText="works"
-          subtitle="Our proven 3-step process transforms your business with systematic growth solutions that deliver results."
-        />
-
-        {/* Timeline */}
-        <div ref={sectionRef} className="relative">
-          {/* Desktop Timeline */}
-          <div className="hidden lg:flex items-start justify-between">
+      <motion.div
+        className="mt-16"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Desktop Timeline */}
+        <div className="hidden md:block">
+          <div className="relative flex items-start justify-between gap-x-8">
+            <TimelineConnector />
             {steps.map((step, index) => (
-              <React.Fragment key={step.title}>
-                <StepNode step={step} index={index} isVisible={isVisible} />
-                {index < steps.length - 1 && <ConnectingLine isVisible={isVisible} index={index} />}
-              </React.Fragment>
+              <TimelineStep key={step.title} step={step} index={index} />
             ))}
           </div>
+        </div>
 
-          {/* Mobile Timeline */}
-          <div className="lg:hidden space-y-12">
-            {steps.map((step, index) => (
-              <div key={step.title} className="relative">
-                <div className="flex items-start space-x-6">
-                  <div
-                    className={`
-                      flex-shrink-0 transition-all duration-700 ease-out transform
-                      ${isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"}
-                    `}
-                    style={{ transitionDelay: `${index * 200}ms` }}
-                  >
-                    {/* Mobile node */}
-                    <div className="relative">
-                      <div className="w-12 h-12 bg-rose-50 border-2 border-rose-200 rounded-full flex items-center justify-center shadow-sm">
-                        <step.icon className="w-6 h-6 text-rose-700" />
-                      </div>
-                    </div>
-
-                    {/* Step number */}
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full border border-stone-300 flex items-center justify-center">
-                      <span className="text-xs font-medium text-stone-700">{step.number}</span>
-                    </div>
+        {/* Mobile Timeline */}
+        <div className="md:hidden space-y-10">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              className="relative"
+              variants={itemVariants}
+            >
+              <div className="flex items-start gap-6">
+                {/* Vertical connector line */}
+                {index < steps.length - 1 && (
+                  <div className="absolute left-6 top-16 w-0.5 h-16 bg-gradient-to-b from-rose-300 to-rose-400"></div>
+                )}
+                
+                {/* Step marker */}
+                <div className="flex-shrink-0 relative">
+                  <div className="w-12 h-12 bg-gradient-to-br from-rose-100 to-rose-200 border-2 border-white rounded-full flex items-center justify-center shadow-lg">
+                    <step.icon className="w-6 h-6 text-rose-700" />
                   </div>
-
-                  {/* Mobile content */}
-                  <div
-                    className={`
-                      flex-1 transition-all duration-700 ease-out transform
-                      ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-                    `}
-                    style={{ transitionDelay: `${index * 200 + 100}ms` }}
-                  >
-                    <div className="bg-white/70 backdrop-blur-sm border border-stone-200/50 rounded-xl p-6 shadow-sm">
-                      <h3 className="text-lg font-medium text-stone-900 mb-2 tracking-wide">{step.title}</h3>
-                      <p className="text-stone-600 text-sm leading-relaxed">{step.description}</p>
-                    </div>
+                  <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full border border-stone-300 flex items-center justify-center">
+                    <span className="text-xs font-medium text-stone-700">{step.number}</span>
                   </div>
                 </div>
 
-                {/* Mobile connecting line */}
-                {index < steps.length - 1 && (
-                  <div className="ml-6 mt-4 mb-4">
-                    <div
-                      className={`
-                        w-0.5 h-8 bg-stone-300 relative
-                        transition-all duration-1000 ease-out transform origin-top
-                        ${isVisible ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}
-                      `}
-                      style={{ transitionDelay: `${index * 200 + 300}ms` }}
-                    ></div>
+                {/* Step content */}
+                <div className="flex-1">
+                  <div className="bg-white/60 backdrop-blur-sm border border-stone-200/30 rounded-2xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-300">
+                    <h3 className="text-lg font-medium text-stone-900 mb-2 tracking-wide">
+                      {step.title}
+                    </h3>
+                    <p className="text-stone-600 text-sm leading-relaxed mb-3">
+                      {step.description}
+                    </p>
+                    <div className="pt-2 border-t border-stone-200/50">
+                      <p className="text-xs text-stone-500 leading-relaxed">
+                        <span className="font-medium">Deliverables:</span> {step.deliverables}
+                      </p>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-20">
-          <div
-            className={`
-              transition-all duration-1000 ease-out transform
-              ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-            `}
-            style={{ transitionDelay: "800ms" }}
+        {/* Mini Testimonial */}
+        <motion.div 
+          className="mt-16 text-center"
+          variants={itemVariants}
+        >
+          <blockquote className="text-stone-600 italic text-lg max-w-2xl mx-auto mb-2">
+            "The process was seamless from start to finish. We saw results within the first month and our revenue has grown 180% since launch."
+          </blockquote>
+          <cite className="text-sm text-stone-500 font-medium">— Sarah M., E-commerce Founder</cite>
+        </motion.div>
+
+        {/* Reassurance Line */}
+        <motion.div 
+          className="text-center mt-8 mb-12"
+          variants={itemVariants}
+        >
+          <p className="text-sm text-stone-500">No lock-in. 30‑day guarantee.</p>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div 
+          className="text-center space-y-4 md:space-y-0 md:flex md:items-center md:justify-center md:gap-6"
+          variants={itemVariants}
+        >
+          <button className="bg-stone-900 text-white font-medium py-3 px-8 rounded-lg hover:bg-stone-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2">
+            Schedule Discovery Call
+          </button>
+          <a 
+            href="#" 
+            className="inline-flex items-center text-stone-600 hover:text-stone-900 font-medium transition-colors duration-300 group"
           >
-            <p className="text-stone-500 mb-8 font-normal">Ready to start your growth journey?</p>
-            <button className="border border-stone-300 text-stone-700 font-medium py-3 px-8 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group">
-              Schedule Discovery Call
-              <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
+            See sample plan
+            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+          </a>
+        </motion.div>
+      </motion.div>
+    </div>
   )
 }

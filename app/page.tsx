@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import ClientStories from "@/components/what-we-do-section"
-import ResultsSection from "@/components/results-section"
 import HowItWorksSection from "@/components/how-it-works-section"
 import TestimonialsSection from "@/components/testimonials-section"
 import AboutSection from "@/components/about-section"
@@ -212,16 +211,11 @@ export default function Page() {
         <ClientStories />
       </div>
 
-      {/* Results Section */}
-      <div id="results-section" className="py-12 sm:py-16 lg:py-20">
-        <SectionCard>
-          <ResultsSection />
-        </SectionCard>
-      </div>
-
       {/* How It Works Section */}
-      <div id="how-it-works-section">
-        <HowItWorksSection />
+      <div id="how-it-works-section" className="py-12 sm:py-16 lg:py-20">
+        <SectionCard>
+          <HowItWorksSection />
+        </SectionCard>
       </div>
 
       {/* Testimonials Section */}
