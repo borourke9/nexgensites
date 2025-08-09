@@ -85,6 +85,11 @@ function ProjectSlide({ project, isActive }: { project: Project; isActive: boole
                   alt={`${project.name} website mockup`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    console.error('Failed to load desktop image:', project.images.desktop);
+                    e.currentTarget.style.backgroundColor = '#f5f5f4';
+                  }}
+                  onLoad={() => console.log('Desktop image loaded:', project.images.desktop)}
                 />
               </div>
             </div>
@@ -99,6 +104,11 @@ function ProjectSlide({ project, isActive }: { project: Project; isActive: boole
                   alt={`${project.name} mobile website mockup`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    console.error('Failed to load mobile image:', project.images.mobile);
+                    e.currentTarget.style.backgroundColor = '#f5f5f4';
+                  }}
+                  onLoad={() => console.log('Mobile image loaded:', project.images.mobile)}
                 />
               </div>
             </div>
