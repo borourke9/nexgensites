@@ -107,7 +107,12 @@ function ProjectSlide({
                     onError={(e) => {
                       console.error('Failed to load desktop image:', project.images.desktop);
                       e.currentTarget.style.backgroundColor = '#f5f5f4';
+                      e.currentTarget.style.display = 'flex';
+                      e.currentTarget.style.alignItems = 'center';
+                      e.currentTarget.style.justifyContent = 'center';
+                      e.currentTarget.innerHTML = '❌ Image failed to load';
                     }}
+                    onLoad={() => console.log('Desktop image loaded successfully:', project.images.desktop)}
                   />
                 </div>
               </div>
@@ -126,7 +131,12 @@ function ProjectSlide({
                     onError={(e) => {
                       console.error('Failed to load mobile image:', project.images.mobile);
                       e.currentTarget.style.backgroundColor = '#f5f5f4';
+                      e.currentTarget.style.display = 'flex';
+                      e.currentTarget.style.alignItems = 'center';
+                      e.currentTarget.style.justifyContent = 'center';
+                      e.currentTarget.innerHTML = '❌';
                     }}
+                    onLoad={() => console.log('Mobile image loaded successfully:', project.images.mobile)}
                   />
                 </div>
               </div>
