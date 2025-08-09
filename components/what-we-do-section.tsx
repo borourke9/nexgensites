@@ -42,7 +42,7 @@ const SAMPLE_PROJECTS: Project[] = [
     result: "3.1x lead volume in 90 days",
     quote: "The AI picks up every call—we stopped missing jobs.",
     quoteBy: "Mike, Owner",
-    liveUrl: "https://example.com",
+    liveUrl: "https://www.malonelectrical.com/",
     images: {
       desktop: "/malone_electrical_optimized.jpg",
       mobile: "/malone_electrical_optimized.jpg"
