@@ -1,5 +1,6 @@
 import type React from "react"
 import "./globals.css"
+import CentralizedParallax from "@/components/centralized-parallax"
 
 export default function RootLayout({
   children,
@@ -8,7 +9,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <CentralizedParallax text="NEXGEN" opacity={0.6} stroke={false} />
+        {children}
+      </body>
     </html>
   )
 }

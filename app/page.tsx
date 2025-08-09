@@ -11,7 +11,8 @@ import PricingSection from "@/components/pricing-section"
 import ContactSection from "@/components/contact-section"
 import TrustSection from "@/components/trust-section"
 import ScrollIndicator from "@/components/scroll-indicator"
-import ParallaxWordmark, { ReducedMotionWordmark } from "@/components/parallax-wordmark"
+import SectionCard from "@/components/section-card"
+
 import { ArrowRight, Sparkles, CheckCircle, Star, Play, Palette, Users, Heart, Building2, Car, Scissors, Sparkles as SparklesIcon } from "lucide-react"
 import Navigation from "@/components/navigation"
 import HeroBackground from "@/components/hero-background"
@@ -19,62 +20,24 @@ import { useEffect, useState } from "react"
 
 export default function Page() {
   const [isLoaded, setIsLoaded] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
     // Trigger animations after component mounts
     const timer = setTimeout(() => setIsLoaded(true), 100)
     
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    
-    const handleChange = () => setPrefersReducedMotion(mediaQuery.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    
-    return () => {
-      clearTimeout(timer)
-      mediaQuery.removeEventListener('change', handleChange)
-    }
+    return () => clearTimeout(timer)
   }, [])
 
   return (
     <div>
       {/* Navigation */}
       <Navigation />
-      
-            {/* Masked Parallax Background Wordmark - Only visible in hero and industries sections */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-        <div 
-          className="absolute inset-0 overflow-hidden"
-          style={{
-            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100vh, rgba(0,0,0,0.8) 120vh, rgba(0,0,0,0) 140vh)',
-            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100vh, rgba(0,0,0,0.8) 120vh, rgba(0,0,0,0) 140vh)'
-          }}
-        >
-          {prefersReducedMotion ? (
-            <ReducedMotionWordmark 
-              text="NEXGEN" 
-              opacity={0.6} 
-              stroke={false}
-            />
-          ) : (
-            <ParallaxWordmark 
-              text="NEXGEN"
-              from={-80}
-              to={120}
-              opacity={0.6} 
-              stroke={false}
-            />
-          )}
-        </div>
-      </div>
 
       <div id="home" className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 relative overflow-hidden">
         {/* Subtle textured background */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
-        <main className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-28">
+        <main className="relative z-0 px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-28">
           <div className="relative max-w-8xl mx-auto">
             {/* Hero Content - Responsive Two-Column Layout */}
             <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center">
@@ -231,7 +194,9 @@ export default function Page() {
               }`}
               style={{ transitionDelay: '1600ms' }}
             >
-              <TrustSection />
+              <SectionCard>
+                <TrustSection />
+              </SectionCard>
             </div>
           </div>
 
@@ -248,8 +213,10 @@ export default function Page() {
       </div>
 
       {/* Results Section */}
-      <div id="results-section">
-        <ResultsSection />
+      <div id="results-section" className="py-12 sm:py-16 lg:py-20">
+        <SectionCard>
+          <ResultsSection />
+        </SectionCard>
       </div>
 
       {/* How It Works Section */}
@@ -258,8 +225,10 @@ export default function Page() {
       </div>
 
       {/* Testimonials Section */}
-      <div id="testimonials-section">
-        <TestimonialsSection />
+      <div id="testimonials-section" className="py-12 sm:py-16 lg:py-20">
+        <SectionCard>
+          <TestimonialsSection />
+        </SectionCard>
       </div>
 
       {/* About Section */}
