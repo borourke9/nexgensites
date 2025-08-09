@@ -138,19 +138,22 @@ export default function TestimonialsSection() {
           subtitle="Real results from real businesses. See how our growth systems have transformed companies across industries."
         />
 
-        {/* Desktop Grid Layout */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-8 mb-12">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
-          ))}
-        </div>
-
-        {/* Mobile/Tablet Horizontal Scroll */}
-        <div className="lg:hidden">
-          <div className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide">
+        {/* Testimonials Grid Container */}
+        <div className="bg-white/40 backdrop-blur-sm border border-black/[0.06] rounded-3xl p-8 lg:p-12 mb-12 shadow-sm">
+          {/* Desktop Grid Layout */}
+          <div className="hidden lg:grid lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
             ))}
+          </div>
+
+          {/* Mobile/Tablet Horizontal Scroll */}
+          <div className="lg:hidden">
+            <div className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide">
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
+              ))}
+            </div>
           </div>
         </div>
 
