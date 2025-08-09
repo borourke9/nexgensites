@@ -36,7 +36,7 @@ const SAMPLE_PROJECTS: Project[] = [
     }
   },
   {
-    name: "Northside Electric",
+    name: "Malone Electrical",
     industry: "Home Services",
     tag: "Website + Ads + AI Receptionist",
     result: "3.1x lead volume in 90 days",
@@ -44,8 +44,8 @@ const SAMPLE_PROJECTS: Project[] = [
     quoteBy: "Mike, Owner",
     liveUrl: "https://example.com",
     images: {
-      desktop: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1200",
-      mobile: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=600"
+      desktop: "/malone_electrical_compressed_small.png",
+      mobile: "/malone_electrical_compressed_small.png"
     }
   },
   {
