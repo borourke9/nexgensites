@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { ArrowRight, Wrench, Scissors, Home, Car, Heart, ShoppingCart } from "lucide-react"
+import { Wind, Scissors, Home, Car, Zap, ShoppingCart } from "lucide-react"
 import SectionHeading from "./section-heading"
 
 export default function TrustSection() {
@@ -14,39 +14,33 @@ export default function TrustSection() {
 
   const industries = [
     {
-      name: "Custom Fabrication",
-      icon: Wrench,
-      caption: "Bespoke builds",
-      bgImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=70"
+      name: "HVAC",
+      icon: Wind,
+      bgImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=70"
     },
     {
       name: "Beauty & Wellness",
       icon: Scissors,
-      caption: "Premium care spaces",
       bgImage: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&q=70"
     },
     {
       name: "Real Estate",
       icon: Home,
-      caption: "Property showcase",
       bgImage: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=70"
     },
     {
       name: "Automotive",
       icon: Car,
-      caption: "Drive more leads",
       bgImage: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=70"
     },
     {
-      name: "Healthcare",
-      icon: Heart,
-      caption: "Patient-focused",
-      bgImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1200&q=70"
+      name: "Electricians",
+      icon: Zap,
+      bgImage: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&q=70"
     },
     {
       name: "E-Commerce",
       icon: ShoppingCart,
-      caption: "Online retail",
       bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=70"
     }
   ]
@@ -61,7 +55,7 @@ export default function TrustSection() {
         <SectionHeading 
           title="Industries we"
           accentText="serve"
-          subtitle="From custom fabrication to healthcare, we create tailored solutions for every industry."
+          subtitle="From HVAC to electricians, we create tailored solutions for every industry."
           showUnderline={true}
         />
           
@@ -110,11 +104,6 @@ export default function TrustSection() {
                   <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-1 sm:mb-2 drop-shadow-md">
                     {industry.name}
                   </h3>
-                  
-                  {/* Caption */}
-                  <p className="text-xs sm:text-sm text-white/90 font-medium drop-shadow-sm">
-                    {industry.caption}
-                  </p>
                 </div>
               </div>
             )
