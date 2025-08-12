@@ -116,7 +116,7 @@ export default function Navigation() {
                 onClick={() => scrollToSection("#contact-section")}
                 className="border border-stone-300 text-stone-700 font-medium px-6 py-2.5 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group"
               >
-                Get Started
+                Get My Growth Plan
                 <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
               </button>
             </div>
@@ -170,7 +170,7 @@ export default function Navigation() {
                   onClick={() => scrollToSection("#contact-section")}
                   className="w-full border border-stone-300 text-stone-700 font-medium py-3 px-6 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300"
                 >
-                  Get Started
+                  Get My Growth Plan
                 </button>
               </div>
             </div>
