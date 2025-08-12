@@ -39,19 +39,7 @@ export default function ContactSection() {
           subtitle="Join hundreds of businesses that have scaled with our proven growth systems. Get your free strategy session today."
         />
 
-        {/* Large CTA Button */}
-        <div
-          className={`
-            mb-20 transition-all duration-1000 ease-out transform delay-500
-            ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
-          `}
-        >
-          <button className="border border-stone-300 text-stone-700 font-medium text-lg px-12 py-6 rounded-none hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-all duration-300 group">
-            Build My System
-            <ArrowRight className="w-6 h-6 ml-3 inline group-hover:translate-x-1 transition-transform" />
-            <div className="h-0.5 bg-stone-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left mt-2"></div>
-          </button>
-        </div>
+
 
         {/* Two-column layout */}
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -76,7 +64,7 @@ export default function ContactSection() {
             <div className="space-y-6">
               <h3 className="text-2xl font-medium text-stone-900 mb-6">Prefer to talk directly?</h3>
 
-              <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm border border-stone-200/50 rounded-xl">
+              <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm border border-stone-900 rounded-xl">
                 <div className="w-12 h-12 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-center">
                   <Phone className="w-6 h-6 text-rose-700" />
                 </div>
@@ -86,7 +74,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm border border-stone-200/50 rounded-xl">
+              <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm border border-stone-900 rounded-xl">
                 <div className="w-12 h-12 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-center">
                   <Mail className="w-6 h-6 text-rose-700" />
                 </div>
@@ -96,7 +84,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm border border-stone-200/50 rounded-xl">
+              <div className="flex items-center space-x-4 p-4 bg-white/60 backdrop-blur-sm border border-stone-900 rounded-xl">
                 <div className="w-12 h-12 bg-rose-50 border border-rose-200 rounded-xl flex items-center justify-center">
                   <MessageCircle className="w-6 h-6 text-rose-700" />
                 </div>
@@ -108,7 +96,7 @@ export default function ContactSection() {
             </div>
 
             {/* What to expect */}
-            <div className="bg-white/60 backdrop-blur-sm border border-stone-200/50 rounded-xl p-6">
+            <div className="bg-white/60 backdrop-blur-sm border border-stone-900 rounded-xl p-6">
               <h4 className="text-lg font-medium text-stone-900 mb-4">What to expect in your strategy session:</h4>
               <ul className="space-y-3 text-stone-700">
                 <li className="flex items-start space-x-3">

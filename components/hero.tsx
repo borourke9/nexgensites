@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Star, CheckCircle, Clock, Zap } from "lucide-react"
+import { ArrowRight, Star, CheckCircle, Clock, Zap, Building2, Car, Scissors, Heart, Wrench } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export default function Hero() {
@@ -17,23 +17,23 @@ export default function Hero() {
       {/* Subtle textured background */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f5f5f4%22%20fill-opacity%3D%220.3%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
 
-      <main className="relative z-0 px-4 sm:px-6 lg:px-8 xl:px-12 pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-28">
+      <main className="relative z-0 px-4 sm:px-6 lg:px-8 xl:px-12 pt-8 sm:pt-12 lg:pt-16 xl:pt-20 pb-6 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24">
         <div className="relative max-w-8xl mx-auto">
           {/* Hero Content - Responsive Two-Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16 xl:gap-20 2xl:gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-12 xl:gap-16 2xl:gap-20 items-center">
             {/* Left Column - Content */}
-                          <div className="text-center lg:text-left space-y-4 sm:space-y-8 lg:pl-4 xl:pl-8 2xl:pl-12">
-              {/* Badge with animation */}
-              <div 
-                className={`inline-flex items-center space-x-2 text-sm font-medium text-rose-700 bg-rose-50 px-4 py-2 rounded-full border border-rose-200 transition-all duration-1000 ease-out ${
-                  isLoaded 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 -translate-y-4'
-                }`}
-                style={{ transitionDelay: '200ms' }}
-              >
-                <span>NEXGEN CREATIVE</span>
-              </div>
+                          <div className="text-center lg:text-left space-y-3 sm:space-y-6 lg:space-y-8 lg:pl-4 xl:pl-8 2xl:pl-12">
+                              {/* Badge with animation */}
+                <div 
+                  className={`inline-flex items-center space-x-2 text-sm xl:text-base 2xl:text-lg font-medium text-rose-700 bg-rose-50 px-4 py-2 rounded-full border border-rose-200 transition-all duration-1000 ease-out ${
+                    isLoaded 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 -translate-y-4'
+                  }`}
+                  style={{ transitionDelay: '200ms' }}
+                >
+                  <span>NEXGEN CREATIVE</span>
+                </div>
 
               {/* Headline with animation */}
               <h1 
@@ -83,10 +83,10 @@ export default function Hero() {
                         })
                       }
                     }}
-                    className="bg-stone-900 hover:bg-stone-800 text-white font-medium px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg lg:px-10 lg:py-5 lg:text-xl rounded-none border border-stone-900 group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    className="bg-stone-900 hover:bg-stone-800 text-white font-medium px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg lg:px-12 lg:py-6 lg:text-xl xl:px-16 xl:py-8 xl:text-2xl 2xl:px-20 2xl:py-10 2xl:text-3xl rounded-none border border-stone-900 group cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
                   >
                     Get My Growth Plan
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </div>
                 <p className="text-sm text-stone-500 text-center lg:text-left">
@@ -132,7 +132,7 @@ export default function Hero() {
                       })
                     }
                   }}
-                  className="hidden lg:inline text-stone-600 hover:text-stone-900 font-medium underline underline-offset-4 transition-colors duration-300"
+                  className="hidden lg:inline text-stone-600 hover:text-stone-900 font-medium underline underline-offset-4 transition-colors duration-300 lg:text-lg xl:text-xl 2xl:text-2xl"
                 >
                   See pricing
                 </button>
@@ -227,13 +227,23 @@ export default function Hero() {
                   </p>
                 </div>
                 
-                {/* Right: Client icons */}
-                <div className="flex items-center space-x-4 opacity-60">
-                  <div className="w-8 h-8 bg-stone-300 rounded-full"></div>
-                  <div className="w-8 h-8 bg-stone-300 rounded-full"></div>
-                  <div className="w-8 h-8 bg-stone-300 rounded-full"></div>
-                  <div className="w-8 h-8 bg-stone-300 rounded-full"></div>
-                  <div className="w-8 h-8 bg-stone-300 rounded-full"></div>
+                {/* Right: Industry icons */}
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center">
+                    <Building2 className="w-4 h-4 text-stone-600" />
+                  </div>
+                  <div className="w-8 h-8 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center">
+                    <Car className="w-4 h-4 text-stone-600" />
+                  </div>
+                  <div className="w-8 h-8 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center">
+                    <Scissors className="w-4 h-4 text-stone-600" />
+                  </div>
+                  <div className="w-8 h-8 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-stone-600" />
+                  </div>
+                  <div className="w-8 h-8 bg-stone-100 border border-stone-300 rounded-full flex items-center justify-center">
+                    <Wrench className="w-4 h-4 text-stone-600" />
+                  </div>
                 </div>
               </div>
             </div>

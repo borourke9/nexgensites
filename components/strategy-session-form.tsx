@@ -117,7 +117,7 @@ export default function StrategySessionForm() {
   }
 
   return (
-    <div className="bg-white/80 backdrop-blur-md border border-white/40 rounded-3xl p-8 shadow-2xl shadow-pink-500/10">
+    <div className="bg-white/80 backdrop-blur-md border border-stone-900 rounded-3xl p-8 shadow-2xl shadow-pink-500/10">
       <h3 className="text-2xl font-bold text-gray-900 mb-6">Get Your Free Strategy Session</h3>
 
       {/* Success Message */}
@@ -219,7 +219,7 @@ export default function StrategySessionForm() {
           className={`w-full font-semibold py-4 px-6 rounded-none border transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 ${
             submitStatus === "success"
               ? "bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600 shadow-emerald-500/25"
-              : "bg-stone-900 hover:bg-stone-800 text-white border-stone-900 hover:border-stone-800 shadow-stone-900/25 hover:shadow-xl"
+              : "bg-[#b31334] hover:bg-[#a0122f] text-white border-[#b31334] hover:border-[#a0122f] shadow-[#b31334]/25 hover:shadow-xl"
           }`}
         >
           {isSubmitting ? (
