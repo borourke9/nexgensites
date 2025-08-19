@@ -179,3 +179,36 @@
     display: none;
   }
 }
+
+/* Premium Design System */
+:root{
+  --cream:#FAF6F0; /* soft white/cream */
+  --ink:#0D0D0D;
+  --muted-ink:#4A4F57;
+  --accent:#111111;
+  --radius-lg:28px;
+  --radius-xl:36px;
+}
+
+/* Theme helpers */
+.bg-cream{ background: var(--cream); }
+.text-ink{ color: var(--ink); }
+
+/* Glass only if you still need it on light bg */
+.glass {
+  background: rgba(0,0,0,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.card-glass {
+  background: rgba(0,0,0,0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.10);
+}
+
+.font-display { font-family: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, sans-serif; }
+.font-body { font-family: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, sans-serif; }
+
+/* Nicely balanced multi-line headlines on big screens */
+.balance { text-wrap: balance; }
