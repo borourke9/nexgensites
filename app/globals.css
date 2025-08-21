@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 5.7% 82.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Boutique Gradient Background System */
+@layer utilities {
+  /* Primary Boutique Gradient - matches hero section */
+  .bg-boutique-gradient {
+    background: linear-gradient(135deg, 
+      #fef7f0 0%, 
+      #fef3e8 25%, 
+      #fdf2e7 50%, 
+      #fef7f0 75%, 
+      #fef3e8 100%);
+  }
+
+  /* Animated Boutique Gradient */
+  .bg-boutique-gradient-animated {
+    background: linear-gradient(135deg, 
+      #fef7f0 0%, 
+      #fef3e8 25%, 
+      #fdf2e7 50%, 
+      #fef7f0 75%, 
+      #fef3e8 100%);
+    background-size: 400% 400%;
+    animation: boutiqueShift 45s ease-in-out infinite;
+  }
+
+  /* Alternate Boutique Gradient - champagne to ivory */
+  .bg-boutique-gradient-alt {
+    background: linear-gradient(135deg, 
+      #fef7f0 0%, 
+      #fdf8f3 25%, 
+      #fef9f4 50%, 
+      #fef7f0 75%, 
+      #fdf8f3 100%);
+  }
+
+  /* Radial Boutique Gradient */
+  .bg-boutique-gradient-radial {
+    background: radial-gradient(ellipse at top center, 
+      #fef7f0 0%, 
+      #fef3e8 50%, 
+      #fdf2e7 100%);
+  }
+
+  /* Subtle Overlay for Content Sections */
+  .bg-boutique-overlay {
+    background: linear-gradient(135deg, 
+      rgba(254, 247, 240, 0.95) 0%, 
+      rgba(254, 243, 232, 0.95) 25%, 
+      rgba(253, 242, 231, 0.95) 50%, 
+      rgba(254, 247, 240, 0.95) 75%, 
+      rgba(254, 243, 232, 0.95) 100%);
+  }
+
+  /* Boutique Gradient Animation */
+  @keyframes boutiqueShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
+  }
+
+  /* Boutique Section Backgrounds */
+  .bg-boutique-section {
+    @apply bg-boutique-gradient relative overflow-hidden;
+  }
+
+  .bg-boutique-section-animated {
+    @apply bg-boutique-gradient-animated relative overflow-hidden;
+  }
+
+  .bg-boutique-section-alt {
+    @apply bg-boutique-gradient-alt relative overflow-hidden;
+  }
+
+  /* Content Overlay for Better Contrast */
+  .bg-boutique-content-overlay {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(1px);
+  }
+
+  /* Boutique Card Backgrounds */
+  .bg-boutique-card {
+    @apply bg-white/70 backdrop-blur-sm border border-stone-200/50;
+  }
+
+  .bg-boutique-card-hover {
+    @apply bg-white/80 backdrop-blur-sm border border-stone-200/50;
+  }
+
+  /* Line clamping utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Scrollbar hiding for mobile carousel */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Premium Design System */
+:root{
+  --cream:#FAF6F0; /* soft white/cream */
+  --ink:#0D0D0D;
+  --muted-ink:#4A4F57;
+  --accent:#111111;
+  --radius-lg:28px;
+  --radius-xl:36px;
+}
+
+/* Theme helpers */
+.bg-cream{ background: var(--cream); }
+.text-ink{ color: var(--ink); }
+
+/* Glass only if you still need it on light bg */
+.glass {
+  background: rgba(0,0,0,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.card-glass {
+  background: rgba(0,0,0,0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.10);
+}
+
+.font-display { font-family: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, sans-serif; }
+.font-body { font-family: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, sans-serif; }
+
+/* Nicely balanced multi-line headlines on big screens */
+.balance { text-wrap: balance; }
+
+/* Balanced multi-line headings */
+.text-balance { text-wrap: balance; }
+
+/* Big, tight, premium display type */
+.headline-stealth{
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: .92;
+  /* fluid but capped */
+  font-size: clamp(42px, 8vw, 108px);
+}
+
+/* Premium display style (fluid, tight) */
+.headline-stealth{
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: .92;
+  /* fluid size with sane caps per breakpoint */
+  font-size: clamp(40px, 7.8vw, 108px);
+}
+
+/* Measure helpers: keep 2 clean lines on desktop */
+.h1-measure{
+  max-width: 22ch;             /* typical sweet spot */
+}
+@media (min-width:1280px){
+  .h1-measure{ max-width: 20.5ch; }  /* nudges to hold exactly 2 lines */
+}
+
+/* Balanced 2-line display heading */
+.text-balance { text-wrap: balance; }
+
+.headline-stealth{
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: .92;
+  font-size: clamp(40px, 7.6vw, 108px);
+}
+
+/* Keep the heading to ~20–21 characters per line on desktop to force 2 lines */
+.h1-measure{ max-width: 21.25ch; }         /* desktop sweet spot */
+@media (min-width:1440px){ .h1-measure{ max-width: 20.5ch; } } /* large screens tighten slightly */
+
+/* Optional: subtle right-edge fade behind the headline so it reads over video */
+.h1-fade{ position: relative; }
+.h1-fade::after{
+  content: "";
+  position: absolute; inset: 0 auto 0 100%;
+  width: 7rem; pointer-events: none;
+  background: linear-gradient(90deg, rgba(250,246,240,0) 0%, rgba(250,246,240,.92) 100%);
+  display: none;
+}
+@media (min-width:1024px){ .h1-fade::after{ display:block; } }
+
+/* Premium Section Headings - Match Hero Aesthetic */
+.section-heading {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.section-heading-xl {
+  font-size: clamp(32px, 5vw, 64px);
+}
+
+.section-heading-lg {
+  font-size: clamp(28px, 4.5vw, 56px);
+}
+
+.section-heading-md {
+  font-size: clamp(24px, 4vw, 48px);
+}
+
+/* Premium Section Subheadings */
+.section-subheading {
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 2.5vw, 22px);
+  line-height: 1.6;
+  color: var(--muted-ink);
+  max-width: 65ch;
+}
+
+/* Premium Section Spacing */
+.section-padding {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+}
+
+.section-margin {
+  margin: clamp(3rem, 6vw, 5rem) 0;
+}
+
+/* Premium Card Styling */
+.premium-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.premium-card-hover {
+  @apply premium-card;
+  transition: all 0.3s ease;
+}
+
+.premium-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
